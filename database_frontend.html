@@ -1,119 +1,126 @@
 <!DOCTYPE html>
 <html>
-    <head>
-     <title>
-            IoT-Creator
-        </title>
-            <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  <head>
+    <title>
+        IoT-Creator Datathon Submission
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
+    <!-- add icon link -->
+    <!-- DEBUG - remove unnecessary link
+    <link rel = "icon" href="https://iot-creator.org:1880/IoTCreatorSquare.png" style="display: none;"></link>
+    -->
+  </head>
+  <body align="left" style="background-color:#D3D3D3;margin-left:10%">
+    <div class="container">
+      <h1 align="left" style='color:white;background-color:#990000;width:90%;'>IoT Creator Datathon</h1>
+      <div class="main">
+        <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/datathon">
+          <label width="68" for="Student_Name"> Student Name</label>
+          <br>
+          <input size="50" pattern="\s*(\S\s*){3,}" class="form-control" id="Student_Name" name="Student_Name" placeholder="Enter name" required>
+          <br><br>
 
-        <!-- add icon link -->
-        <link rel = "icon" href="https://iot-creator.org:1880/IoTCreatorSquare.png" style="display: none;"></link>
+          <label width="68" for="Email">Email Address</label>
+          <br>
+          <input size="50" pattern="\s*(\S\s*){4,}" class="form-control" id="Email" name="Email" placeholder="Enter email" type="email" required>
+          <br><br>
+          <hr>
+          <br>
 
-    </head>
-<body align="left" style="background-color:#D3D3D3;margin-left:10%">
+          <label width="68" for="Descriptive_Title"> Project Title</label>
+          <br>
+          <input size="50" pattern="\s*(\S\s*){3,}" class="form-control" id="Descriptive_Title" name="Descriptive_Title" placeholder="Enter title" required>
+          <br><br>
 
+          <label width="68" for="Description">Project Description</label>
+          <br>
+          <textarea rows="10" cols="100" class="form-control" id="Description" name="Description" placeholder="Enter description" required></textarea>
+          <br><br>
 
+          <label for="Category">Category</label>
+          <select id="Category" name="Category">
+            <option value="none" selected disabled hidden> Select a Category</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
 
-<div class="container">
-    <h1 align="left" style='color:white;background-color:#990000;width:90%;'>IoT Creator Datathon</h1>
+          <label for="Location">Location</label>
+          <select id="Location" name="Location">
+            <option value="none" selected disabled hidden> Select a Location</option>
+            <option value="NORAM">NORAM</option>
+            <option value="SOAM" >SOAM</option>
+            <option value="EMEA" >EMEA</option>
+            <option value="APAC" >APAC</option>
+          </select>
 
+          <label for="Gender">Gender</label>
+          <select id="Gender" name="Gender">
+            <option value="none" selected disabled hidden> Select a Gender</option>
+            <option value="Female">Female</option>
+            <option value="Male"  >Male</option>
+            <option value="Other" >Prefer not to specify</option>
+          </select>
+          <br><br>
 
-        <div class="main">
-            <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/datathon">
+          <label width="68" for="Keyword">Keyword</label>
+          <br>
+          <input  pattern="\s*(\S\s*){4,}" class="form-control" id="Keyword" name="Keyword" placeholder="Keyword" required>
+          <br><br>
+          <hr>
+          <br>
 
-              <label for="Category">Category</label>
-                <select id="Category" name="Category">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
+          <label  for="Code">Code in JSON Format</label>
+          <br>
+          <textarea class="form-control" name="Code" rows="15" cols="100" placeholder="Paste exported flow" required></textarea>
+          <br><br>
 
-                <label for="User_Level">User Level</label>
-                <select id="User_Level" name="User_Level">
-                  <option value="Beginner">Beginner</option>
-                  <option value="Advanced">Advanced</option>
-                  <option value="Expert">Expert</option>
-                </select>
-                <br>
-
-              <label  for="Code">Code in JSON Format</label><br>
-              <textarea class="form-control" name="Code" rows="15" cols="100" placeholder="Paste exported flow" required></textarea><br>
-
-              <label width="68" for="Descriptive_Title"> Descriptive Title</label><br>
-              <input class="form-control" size="48" title="At least 3 characters required." pattern="\s*(\S\s*){3,}" id="Descriptive_Title" name="Descriptive_Title" required><br>
-              <br>
-
-
-              <label width="68" for="Description">Description</label><br>
-              <textarea class="form-control" name="Description" rows="10" cols="50" id="Description" name="Description" placeholder="Enter Description" required></textarea><br>
-              <br>
-
-             <label for="image_file">Select an image  file which is less than 5 MB</label><br>
-             <input class="form-control" type="file" value="Click"  accept=".png,.jpg,.jpeg,.gif,.tiff" id="image_file"  name="image_file">
-                 <script>
-                 $(document).ready(function() {
-                 $('input[type="file"]').change(function() {
-                        var imgpath=document.getElementById('image_file');
-                          if (!imgpath.value==""){
-                            var file=imgpath.files[0];
-                            // Allowing file type
-                 var allowedExtensions =  /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-
-                if (!allowedExtensions.exec(imgpath.value)) {
-                alert('Invalid file type');
-                imgpath.value="";
-                return false;
-                 }
-
-
-                            var img=imgpath.files[0].size;
-
-                            var imgsize=img/(1024*1024);
-                            if(file && file['type'].split('/')[0] === 'image'){
-                                if(imgsize>5){
-                                alert("Image size should be less than 5 MB" );
-                                imgpath.value="";
-                                }
-                            }else
-                            imgpath.value="";
-                          }
-
-                     });
+          <label for="image_file">Select an image file which is less than 5 MB</label>
+          <br>
+          <input class="form-control" type="file" value="Click"  accept=".png,.jpg,.jpeg,.gif,.tiff" id="image_file"  name="image_file">
+            <script>
+              $(document).ready(function() {
+                $('input[type="file"]').change(function() {
+                  var imgpath=document.getElementById('image_file');
+                  if (!imgpath.value==""){
+                    var file=imgpath.files[0];
+                    // Allowing file type
+                    var allowedExtensions =  /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                    if (!allowedExtensions.exec(imgpath.value)) {
+                      alert('Invalid file type');
+                      imgpath.value="";
+                      return false;
+                    }
+                    var img=imgpath.files[0].size;
+                    var imgsize=img/(1024*1024);
+                    if(file && file['type'].split('/')[0] === 'image'){
+                      if(imgsize>5){
+                        alert("Image size should be less than 5 MB" );
+                        imgpath.value="";
+                      }
+                    }else
+                      imgpath.value="";
+                  }
                 });
-
-                function getFileExtension(filename)
-                {
+              });
+              function getFileExtension(filename){
                 var ext = /^.+\.([^.]+)$/.exec(filename);
                 return ext == null ? "" : ext[1];
-                }
-                </script>
-              <br>
-              <br>
-              <label width="68" for="Student_Name"> Student Name</label><br>
-              <input class="form-control" title="At least 3 characters required." pattern="\s*(\S\s*){3,}" id="Student_Name" name="Student_Name" required><br>
-              <br>
+              }
+            </script>
+          <br><br>
 
-              <label width="68" for="Email">Email Address</label><br>
-              <input type="email" pattern="\s*(\S\s*){4,}" class="form-control" id="Email" name="Email" placeholder="Enter email" required><br>
-              <br>
-
-
-              <label width="68" for="Keyword">Keyword</label><br>
-              <input  pattern="\s*(\S\s*){4,}" class="form-control" id="Keyword" name="Keyword" placeholder="Keyword" required><br>
-              <br>
-
-              <button type="submit" style="background-color:#990000;color:white" >Submit</button>
-            </form>
-        </div>
+          <button type="submit" style="background-color:#990000;color:white" >Submit</button>
+          <br><br>
+        </form>
+      </div>
     </div>
 
     <script type="text/javascript">
-
-    function check(){
-
-    }
-</script>
-</body>
+        function check(){
+        }
+      </script>
+  </body>
 </html>
