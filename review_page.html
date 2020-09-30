@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+  <html>
+      <head>
+          <title>IOT Creator Datathon</title>
+          <link href= "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet" />
+      </head>
+      <body>
+          <div style="margin-top: 100px" class="ui container">
+            <h1 align="left"   style='color:white;background-color:#990000;width:100%;'>IoT Creator Datathon</h1>
+
+
+				<label style="font-weight: bold;" for="RowID">Submission ID</label>
+				<input type="number" id="RowID" onkeyup="getTitle()" name="RowID">
+				<label style="font-weight: bold;" id="title" for="title"></label> <br>
+
+				<h3>Creativity</h3>
+				<div id="creativity" class="ui star rating" data-max-rating="5"  data-rating="0">
+				</div>
+				<h3>Completeness</h3>
+				<div id="completeness" class="ui star rating" data-max-rating="5"  data-rating="0">
+				</div>
+				<h3>Correctness</h3>
+				<div id="correctness" class="ui star rating" data-max-rating="5"  data-rating="0">
+				</div>
+				<h3>Readability</h3>
+				<div id="readability" class="ui star rating" data-max-rating="5"   data-rating="0">
+				</div>
+				<h3>User Interface</h3>
+				<div id="UI" class="ui star rating" data-max-rating="5"    data-rating="0">
+				</div>
+				<br>
+
+			<br>
+			<button onclick="save()" value="Submit">Save</button>
+		</div>
+          <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity=
+          "sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="  crossorigin="anonymous">
+          </script>
+          <script src= "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
+          </script>
+          <script>
+           var reviewResults = {"rowid":0,"email":"","creativity":0, "completeness":0, "correctness": 0, "readability": 0,"UI":0};
+		   $('.ui.rating')
+                    .rating('setting', 'onRate', function(value) {
+             	    reviewResults[this.id]=value;
+            });
+
+
+
+			function getTitle(){
+			    var rowID= document.getElementById("RowID").value;
+			    reviewResults["rowid"]=rowID;
+			    var title= document.getElementById("title");
+
+			    var url =  "https://iot-creator.org:2022/reviewData/"+rowID;
+				let request = new XMLHttpRequest();
+				request.open('GET', url, true);
+				request.responseType = 'text';
+
+				request.onload = function() {
+			    if(request.response.includes("Cannot"))
+			    title.innerHTML="";
+			    else{
+			       var reviewData = JSON.parse(request.response);
+			        title.innerHTML=reviewData[0].descriptive_title;
+			        populateReviewData();
+			        }
+
+				};
+
+				request.send();
+				//clear ratings
+				$('.ui.rating')
+                .rating('set rating', 0, 0)
+                ;
+		 	}
+			function save(){
+
+                let xhr = new XMLHttpRequest();
+                let url = "https://iot-creator.org:2022/saveReview";
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                reviewResults["email"]="{{global.user}}";
+                var data = JSON.stringify(reviewResults);
+                xhr.send(data);
+                alert("Review saved");
+
+				}
+
+			function populateReviewData(){
+			   var creativity= document.getElementById("creativity");
+
+
+
+			}
+          </script>
+
+      </body>
+  </html> 

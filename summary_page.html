@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    <link href="//stackpath.bootstrapcdn.com/bootswatch/4.4.1/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-715VMUUaOfZR3/rWXZJ9agJ/udwSXGEigabzUbJm2NR4/v5wpDy8c14yedZN6NL7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial;
+  margin: 0 auto; /* Center website */
+  max-width: 800px; /* Max width */
+  padding: 20px;
+}
+
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
+}
+
+.fa {
+  font-size: 25px;
+}
+
+.checked {
+  color: orange;
+}
+
+/* Three column layout */
+.side {
+  float: left;
+  width: 15%;
+  margin-top:10px;
+}
+
+.middle {
+  margin-top:10px;
+  float: left;
+  width: 70%;
+}
+
+/* Place text to the right */
+.right {
+  text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The bar container */
+.bar-container {
+  width: 100%;
+  background-color: #f1f1f1;
+  text-align: center;
+  color: white;
+}
+
+/* Individual bars */
+.bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+  .side, .middle {
+    width: 100%;
+  }
+  .right {
+    display: none;
+  }
+}
+</style>
+    </head>
+
+<body onload="updateStar()" align="left" style="background-color:#D3D3D3;margin-left:10%">
+
+
+<script>
+
+function updateStar() {
+
+var creativity={{Creativity}};
+var completeness={{Completeness}};
+var correctness={{Correctness}};
+var readability={{Readability}};
+var UI={{UI}};
+
+
+var balance=5-creativity;
+for (i = 1; i <= 5; i++) {
+  var tagId="Creat_"+i;
+  if(i<=creativity)
+  starChecked(tagId);
+  else
+  starUnchecked(tagId);
+
+  var tagId="Compl_"+i;
+  if(i<=completeness)
+  starChecked(tagId);
+  else
+  starUnchecked(tagId);
+
+  var tagId="Correct_"+i;
+  if(i<=correctness)
+  starChecked(tagId);
+  else
+  starUnchecked(tagId);
+
+  var tagId="Read_"+i;
+  if(i<=readability)
+  starChecked(tagId);
+  else
+  starUnchecked(tagId);
+
+  var tagId="UI_"+i;
+  if(i<=UI)
+  starChecked(tagId);
+  else
+  starUnchecked(tagId);
+
+    }
+}
+function starChecked(tagId){
+
+     document.getElementById(tagId).className="fa fa-star checked";
+}
+
+function starUnchecked(tagId){
+
+     document.getElementById(tagId).className="fa fa-star";
+}
+
+
+    function copyCode() {
+   /* Get the text field */
+  var copyText = document.getElementById("code");
+
+  /* Select the text field */
+  copyText.select();
+
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  updateDownloadCount();
+  /* Alert the copied text */
+  alert("Code Copied " );
+``}
+
+ function updateDownloadCount(){
+ var rowID= document.getElementById("RowID").value;
+var xhr = new XMLHttpRequest();
+var url = "/incrementDownloadCount/"+rowID;
+xhr.open("GET", url, true);
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.send();
+ }
+</script>
+
+
+<div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-right" style="width:360px;right:0;background-color:#D3D3D3;border:none;" id="mySidebar">
+<br><br>
+
+<h3>Creativity</h3>
+<span id="Creat_1" class="fa fa-star checked"></span>
+<span id="Creat_2" class="fa fa-star checked"></span>
+<span id="Creat_3" class="fa fa-star checked"></span>
+<span id="Creat_4" class="fa fa-star checked"></span>
+<span id="Creat_5" class="fa fa-star"></span>
+<br>
+<h3>Completeness</h3>
+<span id="Compl_1" class="fa fa-star checked"></span>
+<span id="Compl_2" class="fa fa-star checked"></span>
+<span id="Compl_3" class="fa fa-star checked"></span>
+<span id="Compl_4" class="fa fa-star checked"></span>
+<span id="Compl_5" class="fa fa-star"></span>
+<br>
+<h3>Correctness</h3>
+<span id="Correct_1" class="fa fa-star checked"></span>
+<span id="Correct_2" class="fa fa-star checked"></span>
+<span id="Correct_3" class="fa fa-star checked"></span>
+<span id="Correct_4" class="fa fa-star checked"></span>
+<span id="Correct_5" class="fa fa-star"></span>
+<br>
+<h3>Readability</h3>
+<span id="Read_1" class="fa fa-star checked"></span>
+<span id="Read_2" class="fa fa-star checked"></span>
+<span id="Read_3" class="fa fa-star checked"></span>
+<span id="Read_4" class="fa fa-star checked"></span>
+<span id="Read_5" class="fa fa-star"></span>
+<br>
+<h3>User Interface</h3>
+<span id="UI_1" class="fa fa-star checked"></span>
+<span id="UI_2" class="fa fa-star checked"></span>
+<span id="UI_3" class="fa fa-star checked"></span>
+<span id="UI_4" class="fa fa-star checked"></span>
+<span id="UI_5" class="fa fa-star"></span>
+<br><br>
+<label style="font-weight: bold;" for="Downloads"> Downloads</label> <br>
+<label style="font-weight: bold;" for="downloads"> {{Count}}</label>
+
+</div>
+<div class="container" style="width:1200px">
+    <h1 align="left"   style='color:white;background-color:#990000;width:100%;'>IoT Creator Datathon</h1>
+        <div class="col-md-6" style="width:800px">
+
+             <div style="max-width:800px;max-height:400px">
+                <pre >{{{Image}}}</pre>
+              </div>
+
+              <br>
+
+              <label style="font-weight: bold;" for="RowID">Submission ID</label> <br>
+              <label   style="background-color:#D3D3D3;" for="RowID">{{RowID}}</label> <br>
+               <input type="hidden" id="RowID" name="custId" value={{RowID}}>
+
+
+              <label style="font-weight: bold;" for="Code"> Code</label>
+              <textarea id="code" style="background-color:#D3D3D3;;border:none;" rows="4" cols="130" name="comment"   readonly>{{Code}}</textarea>
+
+              <label style="font-weight: bold;" for="Descriptive_Title">Descriptive Title</label> <br>
+              <label style="background-color:#D3D3D3;" for="Descriptive_Title">{{Descriptive_Title}}</label> <br>
+
+              <label style="font-weight: bold;" for="Description">Description</label><br>
+              <textarea rows="4" style="background-color:#D3D3D3;border:none;" cols="130" name="comment" form="usrform"  disabled>{{Description}}</textarea>
+
+              <label style="font-weight: bold;" for="Name">Contestant's Name</label> <br>
+              <label style="background-color:#D3D3D3;" for="Name">{{Name}}</label> <br>
+
+              <button style="color:#D3D3D3;background-color:#990000;color:white" onclick="copyCode()" id="submit" class="btn btn-primary">Copy Code</button>
+
+
+              <br>
+
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
