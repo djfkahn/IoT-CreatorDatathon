@@ -7,15 +7,15 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
     <!-- add icon link -->
-    <!-- 
+    <!--
     <link rel = "icon" href="https://iot-creator.org:1880/IoTCreatorSquare.png" style="display: none;"></link>
     -->
   </head>
   <body align="left" style="background-color:#D3D3D3;margin-left:10%">
     <div class="container">
-      <h1 align="left" style='color:white;background-color:#990000;width:90%;'>IoT Creator Datathon - Project Submit</h1>
+      <h1 align="left" style="color:white;background-color:#990000;width:90%;">IoT Creator Datathon - Project Submit</h1>
       <div class="main">
-        <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/datathon">
+        <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/datathon-submit">
           <label width="68" for="Student_Name">Contestant Name</label>
           <br>
           <input size="50" pattern="\s*(\S\s*){3,}" class="form-control" id="Student_Name" name="Student_Name" placeholder="Enter name" required>
@@ -65,14 +65,14 @@
           </select>
           <br><br>
 
-          <label width="68" for="Keyword">Keyword</label>
+          <label width="68" for="Keywords">Keywords</label>
           <br>
-          <input  pattern="\s*(\S\s*){4,}" class="form-control" id="Keyword" name="Keyword" placeholder="Keyword" required>
+          <input pattern="\s*(\S\s*){4,}" class="form-control" id="Keywords" name="Keywords" placeholder="Keywords" required>
           <br><br>
           <hr>
           <br>
 
-          <label  for="Code">Code in JSON Format</label>
+          <label for="Code">Code in JSON Format</label>
           <br>
           <textarea class="form-control" name="Code" rows="15" cols="100" placeholder="Paste exported flow" required></textarea>
           <br><br>

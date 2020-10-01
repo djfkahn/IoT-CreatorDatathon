@@ -4,27 +4,11 @@
     <title>
         IoT-Creator Datathon Selected Submission
     </title>
-    <!--
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootswatch/4.4.1/lumen/bootstrap.min.css" integrity="sha384-715VMUUaOfZR3/rWXZJ9agJ/udwSXGEigabzUbJm2NR4/v5wpDy8c14yedZN6NL7" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
       * {
         box-sizing: border-box;
       }
-      /*
-      body {
-        font-family: Arial;
-        margin: 0 auto;
-        max-width: 800px;
-        padding: 20px;
-      }
-      .heading {
-        font-size: 25px;
-        margin-right: 25px;
-      }
-      */
       .fa {
         font-size: 20px;
       }
@@ -34,40 +18,6 @@
       .checked {
         color: orange;
       }
-      /* Three column layout */
-      /*.side {
-        float: left;
-        width: 15%;
-        margin-top:10px;
-      }
-      .middle {
-        margin-top:10px;
-        float: left;
-        width: 70%;
-      }*/
-      /* Place text to the right */
-      /*.right {
-        text-align: right;
-      }*/
-      /* Clear floats after the columns */
-      /*.row:after {
-        content: "";
-        display: table;
-        clear: both;
-      } */
-      /* The bar container */
-      /* .bar-container {
-        width: 100%;
-        background-color: #f1f1f1;
-        text-align: center;
-        color: white;
-      } */
-      /* Individual bars */
-      /* .bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
-      .bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-      .bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
-      .bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
-      .bar-1 {width: 15%; height: 18px; background-color: #f44336;} */
       /* Responsive layout - make the columns stack on top of each other instead of next to each other */
       @media (max-width: 400px) {
         .side, .middle {
@@ -164,21 +114,21 @@
               <br>
               <hr>
 
-              <!--
-              <label style="font-weight: bold;" width="68" for="RowID">Submission ID</label>
-              <label style="background-color:#D3D3D3;" for="RowID">{{RowID}}</label>
-              <br>
-              <input type="hidden" id="RowID" name="custId" value={{RowID}}>
-              -->
-
               <label style="font-weight: bold;" for="Code"> Code</label>
               <br>
               <textarea id="code" style="background-color:#D3D3D3;;border:none;" rows="4" cols="100" name="comment" readonly>{{Code}}</textarea>
               <br>
-              <hr>
 
               <button style="color:#D3D3D3;background-color:#990000;color:white" onclick="copyCode()" id="submit" class="btn btn-primary">Copy Code</button>
               <br>
+              <hr>
+
+              <label style="font-weight: bold;" width="68" for="Keyword">Keywords: </label>
+              <br>
+              <label style="background-color:#D3D3D3;" for="Keyword">{{Keyword}}</label>
+              <br>
+              <hr>
+
               <div style="max-width:800px;max-height:400px">
                 <pre >{{{Image}}}</pre>
               </div>
@@ -186,37 +136,36 @@
             </div>
           </td>
           <td>
-            <!-- <div class="w3-sidebar w3-bar-block w3-collapse w3-card w3-animate-right" style="width:360px;right:0;background-color:#D3D3D3;border:none;" id="mySidebar"> -->
             <div class="col-md-6" style="width:120px">
-              <h3>Creativity</h3>
+              <label style="font-weight: bold;" for="Creativity">Creativity</label><br>
               <span id="Creat_1" class="fa fa-star checked"></span>
               <span id="Creat_2" class="fa fa-star checked"></span>
               <span id="Creat_3" class="fa fa-star checked"></span>
               <span id="Creat_4" class="fa fa-star checked"></span>
               <span id="Creat_5" class="fa fa-star"></span>
               <br>
-              <h3>Completeness</h3>
+              <label style="font-weight: bold;" for="Completeness">Completeness</label><br>
               <span id="Compl_1" class="fa fa-star checked"></span>
               <span id="Compl_2" class="fa fa-star checked"></span>
               <span id="Compl_3" class="fa fa-star checked"></span>
               <span id="Compl_4" class="fa fa-star checked"></span>
               <span id="Compl_5" class="fa fa-star"></span>
               <br>
-              <h3>Correctness</h3>
+              <label style="font-weight: bold;" for="Correctness">Correctness</label><br>
               <span id="Correct_1" class="fa fa-star checked"></span>
               <span id="Correct_2" class="fa fa-star checked"></span>
               <span id="Correct_3" class="fa fa-star checked"></span>
               <span id="Correct_4" class="fa fa-star checked"></span>
               <span id="Correct_5" class="fa fa-star"></span>
               <br>
-              <h3>Readability</h3>
+              <label style="font-weight: bold;" for="Readability">Readability</label><br>
               <span id="Read_1" class="fa fa-star checked"></span>
               <span id="Read_2" class="fa fa-star checked"></span>
               <span id="Read_3" class="fa fa-star checked"></span>
               <span id="Read_4" class="fa fa-star checked"></span>
               <span id="Read_5" class="fa fa-star"></span>
               <br>
-              <h3>User Interface</h3>
+              <label style="font-weight: bold;" for="UserInterface">User Interface</label><br>
               <span id="UI_1" class="fa fa-star checked"></span>
               <span id="UI_2" class="fa fa-star checked"></span>
               <span id="UI_3" class="fa fa-star checked"></span>

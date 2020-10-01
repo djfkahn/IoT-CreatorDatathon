@@ -1,0 +1,22 @@
+INSERT INTO Submission
+(code,
+student_name,
+email,
+descriptive_title,
+description,
+category,
+location,
+gender,
+keywords,
+image_file_path)
+VALUES(
+'{{payload.Code}}',
+'{{payload.Student_Name}}',
+'{{payload.Email}}',
+'{{payload.Descriptive_Title}}',
+'{{payload.Description}}',
+'{{payload.Category}}',
+'{{payload.Location}}',
+'{{payload.Gender}}',
+'{{payload.Keywords}}',
+'{{payload.Image_File_Path}}')
