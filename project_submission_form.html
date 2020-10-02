@@ -34,6 +34,11 @@
         font-weight:bold;
         font-size: 22px;
       }
+      hr {
+        width:80%;
+        background-color: #FFFFFF;
+        color: #FFFFFF;
+      }
     </style>
   </head>
   <body align="left">
@@ -86,7 +91,7 @@
           <label width="68" for="Description">Description</label>
           <br>
           <textarea rows="10" cols="100" class="form-control" id="Description" name="Description" placeholder="Describe project, max 1024 characters" required></textarea>
-          <br>
+          <br><br>
 
           <label for="Category">Category</label>
           <select id="Category" name="Category">
@@ -101,10 +106,9 @@
             <option value="8">Health, Wellness, Fitness & Nutrition</option>
             <option value="9">School & Education</option>
           </select>
-          <br>
+          <br><br>
 
           <label width="68" for="Keywords">Keywords</label>
-          <br>
           <input size="50" pattern="\s*(\S\s*){4,}" class="form-control" id="Keywords" name="Keywords" placeholder="Enter comma separated keywords" required>
           <br><br>
           <hr>
