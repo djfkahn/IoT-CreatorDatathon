@@ -44,14 +44,14 @@
   <body align="left">
     <div class="container">
       <div class="header">
-      <!--<img src="theme/header/IoTCreator.png">-->
+      <!--<img height="36px" src="theme/header/IoTCreator.png">-->
         <img height="36px" src="./IoTCreator.png">
         <h1>Datathon Project Submission Form</h1>
         <hr>
       </div>
       <div class="main">
         <h2>Project Creator's Information</h2>
-        <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/datathon-submit">
+        <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/datathon">
           <label width="68" for="Student_Name">Name</label>
           <br>
           <input size="50" pattern="\s*(\S\s*){3,}" class="form-control" id="Student_Name" name="Student_Name" placeholder="Enter name" required>
@@ -121,20 +121,20 @@
 
           <label for="image_file">Select an image file which is less than 5 MB</label>
           <br>
-          <input class="form-control" type="file" value="Click" accept=".png,.jpg,.jpeg,.gif,.tiff" id="image_file"  name="image_file">
+          <input class="form-control" type="file" accept="image/*" id="image_file"  name="image_file">
             <script>
               $(document).ready(function() {
                 $('input[type="file"]').change(function() {
                   var imgpath=document.getElementById('image_file');
                   if (!imgpath.value==""){
-                    var file=imgpath.files[0];
-                    // Allowing file type
-                    var allowedExtensions =  /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-                    if (!allowedExtensions.exec(imgpath.value)) {
-                      alert('Invalid file type');
-                      imgpath.value="";
-                      return false;
-                    }
+                    // var file=imgpath.files[0];
+                    // // Allowing file type
+                    // var allowedExtensions =  /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+                    // if (!allowedExtensions.exec(imgpath.value)) {
+                    //   alert('Invalid file type');
+                    //   imgpath.value="";
+                    //   return false;
+                    // }
                     var img=imgpath.files[0].size;
                     var imgsize=img/(1024*1024);
                     if(file && file['type'].split('/')[0] === 'image'){
@@ -147,17 +147,17 @@
                   }
                 });
               });
-              function getFileExtension(filename){
-                var ext = /^.+\.([^.]+)$/.exec(filename);
-                return ext == null ? "" : ext[1];
-              }
+              // function getFileExtension(filename){
+              //   var ext = /^.+\.([^.]+)$/.exec(filename);
+              //   return ext == null ? "" : ext[1];
+              // }
             </script>
           <br><br>
 
           <hr>
 
           <h2>Final Project Submission Step</h2>
-          <label for="image_file">Click button below to submit project.  Once submitted, the project cannot be modified.</label>
+          <label>Click button below to submit project.  Once submitted, the project cannot be modified.</label>
           <br>
           <button type="submit" style="width:100px;height:50px;">Submit</button>
           <br><br>
