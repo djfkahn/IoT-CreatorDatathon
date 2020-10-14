@@ -1,5 +1,6 @@
 CREATE TABLE Persons (
   id                INTEGER PRIMARY KEY,
+  data_authorized   DATETIME DEFAULT CURRENT_TIMESTAMP,
   first_name        TEXT NOT NULL,
   last_name         TEXT NOT NULL,
   email             TEXT NOT NULL,

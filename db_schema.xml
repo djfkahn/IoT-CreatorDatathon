@@ -43,6 +43,11 @@
 			<datatype>INTEGER</datatype>
 			<default>NULL</default>
 		</row>
+		<row name="data_authorized" null="0" autoincrement="0">
+			<datatype>DATETIME</datatype>
+			<default>'NULL'</default>
+			<comment>When the Person authorized storage of their data for Datathon purposes.</comment>
+		</row>
 		<row name="first_name" null="0" autoincrement="0">
 			<datatype>VARCHAR(20)</datatype>
 			<default>'NULL'</default>
