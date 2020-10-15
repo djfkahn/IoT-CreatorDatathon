@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+  <title>
+    Datathon Registration
+  </title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="./datathon.css" rel="stylesheet">
+</header>
+
+
+<body>
+
+  <head>
+    <img height="36px" src="theme/header/IoTCreator.png">
+    <h1>Datathon Registration - Step 2</h1>
+    <hr>
+  </head>
+
+  <main>
+
+    <h2>Registration Fee</h2>
+    <p>
+      This Datathon has a $25(US) registration fee. The registration cannot be
+      completed until this amount is submitted via PayPal. Please ensure the email
+      you provide for Datathon communication matches the PayPal sender email.
+    </p>
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+      <input type="hidden" name="cmd" value="_s-xclick" />
+
+      <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
+
+      <button type="submit" id="pay" name="pay" formaction="https://www.paypal.com/cgi-bin/webscr">Pay Regitration Fee at PayPal</button>
+
+      <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+      <noscript>
+        <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </noscript>
+    </form>
+
+    <br>
+    <hr>
+
+
+    <h2>Complete Registration</h2>
+    <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/registration_complete">
+      <label for="submit">Click button below to complete your registration.</label>
+      <br>
+      <button type="submit" name="clicked" id="clicked" onblur="validate()" disabled="true">Complete</button>
+      <br><br>
+    </form>
+
+    <script type="text/javascript">
+      $('#pay').on('click', function() {
+        $('#pay').attr('disabled', true);
+        $('#clicked').attr('disabled', false);
+      });
+      $('#clicked').on('click', function() {
+        $('#pay').attr('disabled', false);
+        $('#clicked').attr('disabled', true);
+      });
+
+      function check() {}
+    </script>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+  <title>
+    Datathon Registration
+  </title>
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+  </script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="./datathon.css" rel="stylesheet">
+</header>
+
+
+<body>
+
+  <head>
+    <img height="36px" src="theme/header/IoTCreator.png">
+    <h1>Datathon Registration - Step 1</h1>
+    <hr>
+  </head>
+
+  <main>
+    <h2>Registrant's Information</h2>
+    <p>
+      We collect the minimum information required to communicate with you about
+      Datathon related matters. This information will be stored in the United States
+      and will not be moved without your approval. Our privacy policy can be found
+      <a href="https://docs.google.com/document/d/1q6jJPxSV-M_Zy7vLTTChUBuCQfDS62pNEkkqSjtGQUE/edit?ts=5f7f5a95#">here</a>.
+    </p>
+    <p>
+      After completing the registration process, we will send you an email asking you to
+      fill out an anonymous survey at SurveyMonkey.com.  The surevey allows us to measure
+      whether our outreach efforts are effectively reaching a diverse set of IoT enthusiasts.
+      The answers to that survey will <strong>not</strong> be tied back to your individual Datathon registration.
+    </p>
+    <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/register">
+      <label for="first_name">First Name: </label>
+      <input pattern="\s*(\S\s*){3,}" class="form-control" id="first_name" name="first_name" placeholder="Enter your first name" required>
+      <br>
+      <label for="last_name">Last Name: </label>
+      <input pattern="\s*(\S\s*){3,}" class="form-control" id="last_name" name="last_name" placeholder="Enter your last name" required>
+      <br>
+      <label for="email">Email Address: </label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
+      <br><br>
+
+      <label for="next_button">
+        Clicking the button below will send a confirmation email to the address provided.
+        This email will include a link to confirm the email address and complete the
+        registration process.
+      </label>
+      <br>
+      <button type="submit" id="next_button">Next >></button>
+      <br><br>
+    </form>
+
+    <script type="text/javascript">
+      function check() {}
+    </script>
+  </main>
+</body>
+
+</html>
