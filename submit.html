@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html>
 
-<header>
-  <title>
-    Datathon Project Submit
-  </title>
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js">
-  </script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link href="./datathon.css" rel="stylesheet">
-</header>
-
-
-<body>
-
-  <head>
-    <img height="36px" src="theme/header/IoTCreator.png">
-    <h1>Datathon Submit Step 1</h1>
-    <hr>
-  </head>
-
-  <main>
-    <h2>Please Identify</h2>
-    <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_code">
-      <label for="email">Please enter the email address you used to register:</label>
-      <br>
-      <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
-      <br><br>
-
-      <button type="submit" id="next_button">Next >></button>
-      <br><br>
-    </form>
-
-    <script type="text/javascript">
-      function check() {}
+  <header>
+    <title>
+      Datathon Project Submit
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
 
-  </main>
-</body>
+
+  <body>
+
+    <head>
+      <img class="head-image" src="theme/header/IoTCreator.png">
+      <h1>Datathon Submit Step 1</h1>
+      <hr>
+    </head>
+
+    <main>
+      <h2>Please Identify</h2>
+      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_code">
+        <label class="longlabel" for="email">
+          Please enter the email address you used to register:
+        </label>
+        <br>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <br><br>
+
+        <button type="submit" id="next_button">Next >></button>
+        <br><br>
+      </form>
+
+      <script type="text/javascript">
+        function check() {}
+      </script>
+
+    </main>
+  </body>
 
 </html>
