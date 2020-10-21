@@ -15,28 +15,31 @@
 
     <head>
       <img class="head-image" src="theme/header/IoTCreator.png">
-      <h1>Datathon Registration - Step 1</h1>
+      <h1>Datathon Registration</h1>
       <hr>
     </head>
 
     <main>
-      <h2>Terms and Conditions</h2>
+      <h2>1. Terms and Conditions</h2>
       <p>
         By checking the box below, you affirm your are 16 years old or older, and
         that you have read, understood, and accept the
-        <a href="https://docs.google.com/document/d/1QDLcBS4u_xZTO-BBwOthQT72nTc-oSKTMc8_yta3Br0/edit?ts=5f7f5aac">terms and conditions</a>
+        <a target="_blank" href="https://docs.google.com/document/d/1QDLcBS4u_xZTO-BBwOthQT72nTc-oSKTMc8_yta3Br0/edit?ts=5f7f5aac">terms and conditions</a>
         of this event.
       </p>
       <input type="checkbox" id="terms">
       <label class="longlabel" for="terms" name="terms">
         I am at least 16 years old, and I accept the terms and conditions of the datathon.
       </label>
-      <h2>Privacy</h2>
+      <br>
+      <hr>
+
+      <h2>2. Privacy</h2>
       <p>
         We collect the minimum information required to communicate with you about
         Datathon related matters. This information will be stored in the United States
         and will not be moved without your approval. Our privacy policy can be found
-        <a href="https://docs.google.com/document/d/1q6jJPxSV-M_Zy7vLTTChUBuCQfDS62pNEkkqSjtGQUE/edit?ts=5f7f5a95#">here</a>.
+        <a target="_blank" href="https://docs.google.com/document/d/1q6jJPxSV-M_Zy7vLTTChUBuCQfDS62pNEkkqSjtGQUE/edit?ts=5f7f5a95#">here</a>.
       </p>
       <p>
         After completing the registration process, we will send you an email asking you to
@@ -49,7 +52,10 @@
         I permit the IoT-Creator Datathon to store my contact information for datathon-related
         communication.
       </label>
-      <h2>Registrant's Information</h2>
+      <br>
+      <hr>
+
+      <h2>3. Registrant's Information</h2>
       <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="_top">
         <label for="first_name">First Name: </label>
         <input pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
@@ -62,15 +68,45 @@
         <br>
         <label for="email2">Re-Enter Email: </label>
         <input type="email2" id="email2" name="email2" placeholder="Re-enter your email address" required>
-        <br><br>
+        <br>
+        <hr>
 
-        <label class="longlabel" for="next_button">
-          Clicking the button below will send a confirmation email to the address provided.
-          This email will include a link to confirm the email address and complete the
-          registration process.
+        <h2>4. Pay Registration Fee</h2>
+        <p>
+          This Datathon has a $25(US) entry fee which is submitted via PayPal. Please ensure the email
+          you provide for Datathon communication matches the PayPal sender email. This registration
+          fee entitles the contestant to:
+        </p>
+        <ul>
+          <li>Unlimited project entries.</li>
+          <li>Each project submitted is an opportunity to win cash prize.</li>
+          <li>One year subscription to IoT-Creator.</li>
+        </ul>
+        <!-- This code needs to be reexamined. It has not been working
+             since button was disabled by default. -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick" />
+
+          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
+
+          <button type="button" id="pay" name="pay" disabled="true">
+            Pay Entry Fee via PayPal
+          </button>
+
+          <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+          <noscript>
+            <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+          </noscript>
+        </form>
+        <hr>
+
+        <h2>5. Finalize Registration</h2>
+        <label class="longlabel" for="register">
+          Clicking the button below will complete the registration process. You
+          will receive an confirmation email shortly after.
         </label>
         <br>
-        <button type="submit" id="next_button" disabled="true">Next >></button>
+        <button type="submit" id="register" disabled="true">Register</button>
         <br><br>
       </form>
 
@@ -92,14 +128,20 @@
         $('#privacy').on('click', function() {
           $('#terms').attr('disabled', true);
           $('#privacy').attr('disabled', true);
-          $('#next_button').attr('disabled', false);
+          $('#pay').attr('disabled', false);
         });
-        $('#next_button').on('click', function() {
+        $('#pay').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', true);
+          $('#pay').attr('disabled', true);
+          $('#register').attr('disabled', false);
+        });
+        $('#register').on('click', function() {
           var result = check();
           if (result == "true") {
             $('#terms').attr('disabled', true);
             $('#privacy').attr('disabled', true);
-            $('#next_button').attr('disabled', true);
+            $('#register').attr('disabled', true);
             alert("Thank you for starting your registeration.  Please check your inbox for an email with a link to progress to the next step.  You may close this window.")
           } else {
             alert("Email entries do not match.  Please try again.")

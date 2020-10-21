@@ -51,6 +51,11 @@ p{
   font-weight: 300;
 }
 
+li{
+  max-width: 800px;
+  font-weight: 300;
+}
+
 .head-image {
   float: left;
   height: 44px;
