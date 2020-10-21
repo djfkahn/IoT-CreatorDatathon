@@ -4,9 +4,7 @@ CREATE TABLE Persons (
   first_name        TEXT NOT NULL,
   last_name         TEXT NOT NULL,
   email             TEXT NOT NULL,
-  email_confirmed   ENUM('NO','YES','NA'),
   registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-  paid              ENUM('NO','YES','NA'),
   account_date      DATETIME,
   account_number    INTEGER,
   role              ENUM('CREATOR','JUDGE','FACILITATOR')
@@ -22,8 +20,7 @@ CREATE TABLE Projects (
   description       TEXT NOT NULL,
   category          TEXT NOT NULL,
   keywords          TEXT,
-  cloud_code        TEXT NOT NULL,
-  local_code        TEXT,
+  code              TEXT NOT NULL,
   image_file        TEXT,
   video_file        TEXT,
   num_downloads     INTEGER  DEFAULT 0
