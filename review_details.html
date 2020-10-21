@@ -11,64 +11,8 @@
   </header>
 
 
-  <body onload="updateStar()">
+  <body>
     <script>
-      function updateStar() {
-        var creativity = {
-          {
-            Creativity
-          }
-        };
-        var completeness = {
-          {
-            Completeness
-          }
-        };
-        var correctness = {
-          {
-            Correctness
-          }
-        };
-        var readability = {
-          {
-            Readability
-          }
-        };
-        var UI = {
-          {
-            UI
-          }
-        };
-        var balance = 5 - creativity;
-        for (i = 1; i <= 5; i++) {
-          var tagId = "Creat_" + i;
-          if (i <= creativity)
-            starChecked(tagId);
-          else
-            starUnchecked(tagId);
-          var tagId = "Compl_" + i;
-          if (i <= completeness)
-            starChecked(tagId);
-          else
-            starUnchecked(tagId);
-          var tagId = "Correct_" + i;
-          if (i <= correctness)
-            starChecked(tagId);
-          else
-            starUnchecked(tagId);
-          var tagId = "Read_" + i;
-          if (i <= readability)
-            starChecked(tagId);
-          else
-            starUnchecked(tagId);
-          var tagId = "UI_" + i;
-          if (i <= UI)
-            starChecked(tagId);
-          else
-            starUnchecked(tagId);
-        }
-      }
-
       function starChecked(tagId) {
         document.getElementById(tagId).className = "fa fa-star checked";
       }
@@ -118,15 +62,15 @@
         <br>
 
         <label>Project Title: </label>
-        <label class="longlabel" style="width:400px;">{{Descriptive_Title}}</label>
+        <label class="longlabel" style="width:400px;">{{title}}</label>
         <br>
 
         <label for="Description">Description</label>
-        <textarea rows="10" cols="55" name="comment" form="usrform" readonly>{{Description}}</textarea>
+        <textarea rows="10" cols="55" name="comment" form="usrform" readonly>{{description}}</textarea>
         <br>
 
         <label>Keywords: </label>
-        <label class="longlabel" style="width:400px;">{{Keyword}}</label>
+        <label class="longlabel" style="width:400px;">{{keyword}}</label>
         <br>
 
         <hr>
@@ -141,7 +85,7 @@
           <li>Click "Import" button.</li>
         </ol>
         <label style="font-weight: bold;" for="Code"> Code</label>
-        <textarea id="code" rows="10" cols="55" readonly>{{Code}}</textarea>
+        <textarea id="code" rows="10" cols="55" readonly>{{code}}</textarea>
         <br>
 
         <button onclick="copyCode()" id="copy">Copy Code</button>
@@ -158,7 +102,7 @@
         <h3>Readability</h3>
         <div id="readability" class="ui star rating" data-max-rating="5" data-rating="0"></div>
         <h3>User Interface</h3>
-        <div id="UI" class="ui star rating" data-max-rating="5" data-rating="0"></div>
+        <div id="user_interface" class="ui star rating" data-max-rating="5" data-rating="0"></div>
         <br>
         <button onclick="save()" value="submit" style="font-size:14px;">Sumbit Review</button>
 
@@ -168,13 +112,13 @@
         </script>
         <script type="text/javascript">
           var reviewResults = {
-            "rowid": 0,
-            "email": "",
+            "project_id": 0,
+            // "email": "",
             "creativity": 0,
             "completeness": 0,
             "correctness": 0,
             "readability": 0,
-            "UI": 0
+            "user_interface": 0
           };
           $('.ui.rating')
             .rating('setting', 'onRate', function(value) {
@@ -183,7 +127,7 @@
 
           function getTitle() {
             var rowID = document.getElementById("RowID").value;
-            reviewResults["rowid"] = rowID;
+            reviewResults["project_id"] = rowID;
             var title = document.getElementById("title");
 
             var url = "https://iot-creator.org:2022/reviewData/" + rowID;
@@ -212,7 +156,7 @@
             let url = "https://iot-creator.org:2022/saveReview";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            reviewResults["email"] = "{{global.user}}";
+            // reviewResults["email"] = "{{global.user}}";
             var data = JSON.stringify(reviewResults);
             xhr.send(data);
             alert("Thank you for sumbitting a review.  It has been saved.");
