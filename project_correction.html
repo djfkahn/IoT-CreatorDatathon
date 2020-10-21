@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Datathon Project Submit
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="theme/header/IoTCreator.png">
+      <h1>Datathon Project Correction</h1>
+      <hr>
+    </head>
+
+    <main>
+      <h2>1. Project's Information</h2>
+      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_complete">
+        <label for="title">Title</label>
+        <label class="longlabel" style="width:400px;">{{title}}</label>
+        <br>
+
+        <label for="description">Description</label>
+        <textarea rows="10" cols="55" name="comment" form="usrform" readonly>{{description}}</textarea>
+        <br>
+
+        <label for="category">Category</label>
+        <label class="longlabel" style="width:400px;">{{category}}</label>
+        <br>
+
+        <label for="keywords">Keywords</label>
+        <label class="longlabel" style="width:400px;">{{Keyword}}</label>
+        <br>
+        <hr>
+
+        <h2>2. Project's Implementation</h2>
+        <p>
+          To extract the project's implementation
+        </p>
+        <ol>
+          <li>login to your IoT-Creator account</li>
+          <li>select "Extract" from the menu in the top-right page corner</li>
+          <li>click the "Copy to clipboard" button</li>
+          <li>paste to the input area below (or to text file first)</li>
+        </ol>
+        <p>
+          Remember: to facilitate reviews, every project must include flows to insert
+          IoT sensor data and to model IoT actuator actions.
+        </p>
+        <label for="cloud_code">Iot-Creator Code</label>
+        <br>
+        <textarea id="cloud_code" name="cloud_code" rows="15" cols="100" placeholder="Paste exported IoT-Creator flow in JSON format" required></textarea>
+        <br>
+
+        <p>
+          An image and/or video can help users understand how your project works,
+          and improve your odds of placing in the competition. Below, you have
+          an opportunity to load an image file and/or video file.
+          This is optional.
+        </p>
+        <label for="image_file" style="width:200px;">
+          Image <small>(less than 1 MB)</small>
+        </label>
+        <input type="file" accept="image/*" id="image_file" name="image_file">
+        <script>
+          $(document).ready(function() {
+            $('input[type="file"]').change(function() {
+              var imgpath = document.getElementById('image_file');
+              if (!imgpath.value == "") {
+                var img = imgpath.files[0].size;
+                var imgsize = img / (1024 * 1024);
+                if (file && file['type'].split('/')[0] === 'image') {
+                  if (imgsize > 5) {
+                    alert("Image size should be less than 5 MB");
+                    imgpath.value = "";
+                  }
+                } else
+                  imgpath.value = "";
+              }
+            });
+          });
+        </script>
+        <br><br>
+
+        <label for="video_file" style="width:200px;">
+          Video <small>(less than 4 MB)</small>
+        </label>
+        <input class="form-control" type="file" accept="video/*" id="video_file" name="video_file">
+        <script>
+          $(document).ready(function() {
+            $('input[type="file"]').change(function() {
+              var vidpath = document.getElementById('video_file');
+              if (!vidpath.value == "") {
+                var vid = vidpath.files[0].size;
+                var vidsize = vid / (1024 * 1024);
+                if (file && file['type'].split('/')[0] === 'video') {
+                  if (vidsize > 4) {
+                    alert("Video file size should be less than 4 MB");
+                    vidpath.value = "";
+                  }
+                } else
+                  vidpath.value = "";
+              }
+            });
+          });
+        </script>
+        <br><br>
+
+        <hr>
+
+        <h2>3. Submit Correction</h2>
+        <label class="longlabel" for="submit">
+          Click button below to submit the corrected project.
+        </label>
+        <br>
+        <button type="submit" id="submit" name="submit">Submit</button>
+        <br><br>
+      </form>
+
+      <script type="text/javascript">
+        function check() {}
+      </script>
+
+    </main>
+  </body>
+
+</html>

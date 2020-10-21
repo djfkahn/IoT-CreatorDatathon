@@ -20,7 +20,7 @@
     </head>
 
     <main>
-      <h2>Project's Information</h2>
+      <h2>1. Project's Information</h2>
       <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_complete">
         <label for="title">Title</label>
         <input size="80" pattern="\s*(\S\s*){3,}" id="title" name="title" placeholder="Project title, max 80 characters" required>
@@ -55,16 +55,34 @@
         <br>
         <hr>
 
-        <h2>Project's Implementation</h2>
+        <h2>2. Project's Implementation</h2>
+        <p>
+          To extract the project's implementation
+        </p>
+        <ol>
+          <li>login to your IoT-Creator account</li>
+          <li>select "Extract" from the menu in the top-right page corner</li>
+          <li>click the "Copy to clipboard" button</li>
+          <li>paste to the input area below (or to text file first)</li>
+        </ol>
+        <p>
+          Remember: to facilitate reviews, every project must include flows to insert
+          IoT sensor data and to model IoT actuator actions.
+        </p>
         <label for="cloud_code">Iot-Creator Code</label>
         <br>
         <textarea id="cloud_code" name="cloud_code" rows="15" cols="100" placeholder="Paste exported IoT-Creator flow in JSON format" required></textarea>
         <br>
 
-        <label class="longlabel" for="image_file">
-          Select an image file which is less than 1 MB <small>(optional, but recommended)</small>
+        <p>
+          An image and/or video can help users understand how your project works,
+          and improve your odds of placing in the competition. Below, you have
+          an opportunity to load an image file and/or video file.
+          This is optional.
+        </p>
+        <label for="image_file" style="width:200px;">
+          Image <small>(less than 1 MB)</small>
         </label>
-        <br>
         <input type="file" accept="image/*" id="image_file" name="image_file">
         <script>
           $(document).ready(function() {
@@ -86,10 +104,9 @@
         </script>
         <br><br>
 
-        <label class="longlabel" for="video_file">
-          Select a video file which is less than 4 MB <small>(optional, but recommended)</small>
+        <label for="video_file" style="width:200px;">
+          Video <small>(less than 4 MB)</small>
         </label>
-        <br>
         <input class="form-control" type="file" accept="video/*" id="video_file" name="video_file">
         <script>
           $(document).ready(function() {
@@ -113,7 +130,7 @@
 
         <hr>
 
-        <h2>Final Project Submission Step</h2>
+        <h2>3. Finalize Submission</h2>
         <label class="longlabel" for="submit">
           Click button below to submit project. Once submitted, the project cannot be modified.
         </label>
