@@ -56,16 +56,28 @@ p{
   height: 44px;
 }
 
+.body-image {
+  float: left;
+  height: 60px;
+}
+
 h1 {
   position: relative;
   left: 20px;
   width: 80%;
   letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 h2 {
   font-style: italic;
   letter-spacing: 0.2em;
+}
+
+h3 {
+  font-style: italic;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 a {
@@ -92,31 +104,56 @@ button {
   background-color: #9A1D00;
   font-weight: bold;
   font-style:  italic;
+  font-size: 18px;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+button:disabled {
+  color: #FFFFFF;
+  background-color: #7286A0;
+  font-weight: bold;
+  font-style:  italic;
   font-size: 20px;
   padding: 10px;
   margin: 20px;
   border-radius: 10px;
 }
 
-.fa {
-  font-size: 20px;
+table {
+  text-align: center;
+  border-width: thin;
+  border-style: solid;
+  border-color: #FFFFFF;
 }
 
-.fa-star::before {
-  content: "\f005";
+th {
+  padding: 10px;
+  text-align: center;
+  border-width: thin;
+  border-style: solid;
+  border-color: #FFFFFF;
 }
 
-.checked {
-  color: orange;
+td {
+  font-weight: 300;
+  padding: 10px;
+  border-width: thin;
+  border-style: dotted;
+  border-color: #FFFFFF;
+  max-width: 250px;
 }
 
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 400px) {
-  .side, .middle {
-    width: 100%;
-  }
+.left-column {
+  display: inline;
+  float: left;
+  max-width: 600px;
+}
 
-  .right {
-    display: none;
-  }
+.right-column {
+  display: inline;
+  float: right;
+  max-width: 250px;
+  min-wdith: 150px;
 }

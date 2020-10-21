@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Datathon Project Review
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body onload="updateStar()">
+    <script>
+      function updateStar() {
+        var creativity = {
+          {
+            Creativity
+          }
+        };
+        var completeness = {
+          {
+            Completeness
+          }
+        };
+        var correctness = {
+          {
+            Correctness
+          }
+        };
+        var readability = {
+          {
+            Readability
+          }
+        };
+        var UI = {
+          {
+            UI
+          }
+        };
+        var balance = 5 - creativity;
+        for (i = 1; i <= 5; i++) {
+          var tagId = "Creat_" + i;
+          if (i <= creativity)
+            starChecked(tagId);
+          else
+            starUnchecked(tagId);
+          var tagId = "Compl_" + i;
+          if (i <= completeness)
+            starChecked(tagId);
+          else
+            starUnchecked(tagId);
+          var tagId = "Correct_" + i;
+          if (i <= correctness)
+            starChecked(tagId);
+          else
+            starUnchecked(tagId);
+          var tagId = "Read_" + i;
+          if (i <= readability)
+            starChecked(tagId);
+          else
+            starUnchecked(tagId);
+          var tagId = "UI_" + i;
+          if (i <= UI)
+            starChecked(tagId);
+          else
+            starUnchecked(tagId);
+        }
+      }
+
+      function starChecked(tagId) {
+        document.getElementById(tagId).className = "fa fa-star checked";
+      }
+
+      function starUnchecked(tagId) {
+        document.getElementById(tagId).className = "fa fa-star";
+      }
+
+      function copyCode() {
+        /* Get the text field */
+        var copyText = document.getElementById("code");
+        /* Select the text field */
+        copyText.select();
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        updateDownloadCount();
+        /* Alert the copied text */
+        alert("Code Copied ");
+        ``
+      }
+
+      function updateDownloadCount() {
+        var rowID = document.getElementById("RowID").value;
+        var xhr = new XMLHttpRequest();
+        var url = "/incrementDownloadCount/" + rowID;
+        xhr.open("GET", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send();
+      }
+
+      function check() {}
+    </script>
+
+    <head>
+      <img class="head-image" src="theme/header/IoTCreator.png">
+      <h1>Datathon Review Step 3</h1>
+      <hr>
+    </head>
+
+    <main>
+      <section class="left-column">
+        <h2>Project's Information</h2>
+        <img height="200px" src="Images/Datathon DB Schema image-2020-10-01.png">
+        <br>
+
+        <label>Project Title: </label>
+        <label class="longlabel" style="width:400px;">{{Descriptive_Title}}</label>
+        <br>
+
+        <label for="Description">Description</label>
+        <textarea rows="10" cols="55" name="comment" form="usrform" readonly>{{Description}}</textarea>
+        <br>
+
+        <label>Keywords: </label>
+        <label class="longlabel" style="width:400px;">{{Keyword}}</label>
+        <br>
+
+        <hr>
+
+        <label style="font-weight: bold;" for="Code"> Code</label>
+        <textarea id="code" rows="10" cols="55" readonly>{{Code}}</textarea>
+        <br>
+
+        <button onclick="copyCode()" id="copy">Copy Code</button>
+        <br>
+      </section>
+
+      <section class="right-column">
+        <h3>Creativity</h3>
+        <div id="creativity" class="ui star rating" data-max-rating="5" data-rating="0"></div>
+        <h3>Completeness</h3>
+        <div id="completeness" class="ui star rating" data-max-rating="5" data-rating="0"></div>
+        <h3>Correctness</h3>
+        <div id="correctness" class="ui star rating" data-max-rating="5" data-rating="0"></div>
+        <h3>Readability</h3>
+        <div id="readability" class="ui star rating" data-max-rating="5" data-rating="0"></div>
+        <h3>User Interface</h3>
+        <div id="UI" class="ui star rating" data-max-rating="5" data-rating="0"></div>
+        <br>
+        <button onclick="save()" value="submit" style="font-size:14px;">Sumbit Review</button>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
+        </script>
+        <script type="text/javascript">
+          var reviewResults = {
+            "rowid": 0,
+            "email": "",
+            "creativity": 0,
+            "completeness": 0,
+            "correctness": 0,
+            "readability": 0,
+            "UI": 0
+          };
+          $('.ui.rating')
+            .rating('setting', 'onRate', function(value) {
+              reviewResults[this.id] = value;
+            });
+
+          function getTitle() {
+            var rowID = document.getElementById("RowID").value;
+            reviewResults["rowid"] = rowID;
+            var title = document.getElementById("title");
+
+            var url = "https://iot-creator.org:2022/reviewData/" + rowID;
+            let request = new XMLHttpRequest();
+            request.open('GET', url, true);
+            request.responseType = 'text';
+
+            request.onload = function() {
+              if (request.response.includes("Cannot"))
+                title.innerHTML = "";
+              else {
+                var reviewData = JSON.parse(request.response);
+                title.innerHTML = reviewData[0].descriptive_title;
+                populateReviewData();
+              }
+            };
+
+            request.send();
+            //clear ratings
+            $('.ui.rating')
+              .rating('set rating', 0, 0);
+          }
+
+          function save() {
+            let xhr = new XMLHttpRequest();
+            let url = "https://iot-creator.org:2022/saveReview";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            reviewResults["email"] = "{{global.user}}";
+            var data = JSON.stringify(reviewResults);
+            xhr.send(data);
+            alert("Thank you for sumbitting a review.  It has been saved.");
+          }
+
+          function populateReviewData() {
+            var creativity = document.getElementById("creativity");
+          }
+        </script>
+      </section>
+
+    </main>
+  </body>
+
+</html>

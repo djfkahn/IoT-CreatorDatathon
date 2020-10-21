@@ -20,7 +20,18 @@
     </head>
 
     <main>
-      <h2>Registrant's Information</h2>
+      <h2>Terms and Conditions</h2>
+      <p>
+        By checking the box below, you affirm your are 16 years old or older, and
+        that you have read, understood, and accept the
+        <a href="https://docs.google.com/document/d/1QDLcBS4u_xZTO-BBwOthQT72nTc-oSKTMc8_yta3Br0/edit?ts=5f7f5aac">terms and conditions</a>
+        of this event.
+      </p>
+      <input type="checkbox" id="terms">
+      <label class="longlabel" for="terms" name="terms">
+        I am at least 16 years old, and I accept the terms and conditions of the datathon.
+      </label>
+      <h2>Privacy</h2>
       <p>
         We collect the minimum information required to communicate with you about
         Datathon related matters. This information will be stored in the United States
@@ -33,15 +44,24 @@
         whether our outreach efforts are effectively reaching a diverse set of IoT enthusiasts.
         The answers to that survey will <strong>not</strong> be tied back to your individual Datathon registration.
       </p>
-      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="/register">
+      <input type="checkbox" id="privacy" disabled="true">
+      <label class="longlabel" for="privacy" name="privacy">
+        I permit the IoT-Creator Datathon to store my contact information for datathon-related
+        communication.
+      </label>
+      <h2>Registrant's Information</h2>
+      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="_top">
         <label for="first_name">First Name: </label>
         <input pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
         <br>
         <label for="last_name">Last Name: </label>
         <input pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
         <br>
-        <label for="email">Email Address: </label>
+        <label for="email">Enter Email: </label>
         <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <br>
+        <label for="email2">Re-Enter Email: </label>
+        <input type="email2" id="email2" name="email2" placeholder="Re-enter your email address" required>
         <br><br>
 
         <label class="longlabel" for="next_button">
@@ -50,12 +70,41 @@
           registration process.
         </label>
         <br>
-        <button type="submit" id="next_button">Next >></button>
+        <button type="submit" id="next_button" disabled="true">Next >></button>
         <br><br>
       </form>
 
       <script type="text/javascript">
-        function check() {}
+        function check() {
+          var email1 = document.getElementById('email');
+          var eamil2 = document.getElementById('email2');
+          if (email1.value == email2.value) {
+            return "true"
+          } else {
+            return "false"
+          }
+        }
+
+        $('#terms').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', false);
+        });
+        $('#privacy').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', true);
+          $('#next_button').attr('disabled', false);
+        });
+        $('#next_button').on('click', function() {
+          var result = check();
+          if (result == "true") {
+            $('#terms').attr('disabled', true);
+            $('#privacy').attr('disabled', true);
+            $('#next_button').attr('disabled', true);
+            alert("Thank you for starting your registeration.  Please check your inbox for an email with a link to progress to the next step.  You may close this window.")
+          } else {
+            alert("Email entries do not match.  Please try again.")
+          }
+        });
       </script>
     </main>
   </body>
