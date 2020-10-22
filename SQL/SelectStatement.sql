@@ -59,4 +59,4 @@ SELECT
   email,
   title
 FROM Persons
-JOIN Projects on Persons.id = Projects.creator_id
+JOIN Projects on Persons.id = Projects.creator_id;
