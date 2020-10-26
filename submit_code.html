@@ -21,7 +21,8 @@
 
     <main>
       <h2>1. Project's Information</h2>
-      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_complete">
+      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action"_top">
+        <!-- <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_complete"> -->
         <label for="title">Title</label>
         <input size="80" pattern="\s*(\S\s*){3,}" id="title" name="title" placeholder="Project title, max 80 characters" required>
         <br>
@@ -29,7 +30,6 @@
         <label for="description">Description</label>
         <textarea rows="10" cols="78" id="description" name="description" placeholder="Describe project in detail" required></textarea>
         <br>
-
 
         <label for="category">Category</label>
         <select id="category" name="category" required>
@@ -49,9 +49,11 @@
         <label for="keywords">Keywords</label>
         <input size="80" pattern="\s*(\S\s*){4,}" class="form-control" id="keywords" name="keywords" placeholder="Enter comma separated keywords" required>
         <br>
-        <p>
-          Hint: Use keywords to list IoT hardware used in the project.
-        </p>
+
+        <label for="links">Hardware Links</label>
+        <textarea rows="5" cols="78" id="links" name="links" placeholder="Paste links to hardware description (e.g. where to buy) used in the project." required></textarea>
+        <br>
+
         <br>
         <hr>
 
@@ -61,7 +63,7 @@
         </p>
         <ol>
           <li>login to your IoT-Creator account</li>
-          <li>select "Extract" from the menu in the top-right page corner</li>
+          <li>select "Export" from the menu in the top-right page corner</li>
           <li>click the "Copy to clipboard" button</li>
           <li>paste to the input area below (or to text file first)</li>
         </ol>
@@ -83,45 +85,79 @@
         <label for="image_file" style="width:200px;">
           Image <small>(less than 1 MB)</small>
         </label>
-        <input type="file" accept="image/*" id="image_file" name="image_file">
+        <input type="file" accept="image/*" id="image_file" name="image_file" required>
         <script>
-          $(document).ready(function() {
-            $('input[type="file"]').change(function() {
-              var imgpath = document.getElementById('image_file');
-              if (!imgpath.value == "") {
-                var img = imgpath.files[0].size;
-                var imgsize = img / (1024 * 1024);
-                if (file && file['type'].split('/')[0] === 'image') {
-                  if (imgsize > 5) {
-                    alert("Image size should be less than 5 MB");
-                    imgpath.value = "";
-                  }
-                } else
-                  imgpath.value = "";
-              }
-            });
-          });
+          // $(document).ready(function() {
+          // $('#image_file').ready(function() {
+          //   $('input[type="file"]').change(function() {
+          //     var imgpath = document.getElementById('image_file');
+          //     if (!imgpath.value == "") {
+          //       var img = imgpath.files[0].size;
+          //       var imgsize = img / (1024 * 1024);
+          //       if (file && file['type'].split('/')[0] === 'image') {
+          //         if (imgsize > 5) {
+          //           alert("Image size should be less than 5 MB");
+          //           imgpath.value = "";
+          //         }
+          //       } else
+          //         imgpath.value = "";
+          //     } else {
+          //       $('#video_file').attr('required', false);
+          //     }
+          //   });
+          // });
         </script>
         <br><br>
 
         <label for="video_file" style="width:200px;">
           Video <small>(less than 4 MB)</small>
         </label>
-        <input class="form-control" type="file" accept="video/*" id="video_file" name="video_file">
+        <input type="file" accept=".mp4,video/*" id="video_file" name="video_file" required>
+
         <script>
-          $(document).ready(function() {
+          $('#image_file').ready(function() {
+            $('input[type="file"]').change(function() {
+              var imgpath = document.getElementById('image_file');
+              if (!imgpath.value == "") {
+                var img = imgpath.files[0].size;
+                var imgsize = img / (1024 * 1024);
+                var file = imgpath.files[0];
+                if (file && file['type'].split('/')[0] === 'image') {
+                  if (imgsize > 1) {
+                    alert("Image size should be less than 1 MB");
+                    imgpath.value = "";
+                  } else {
+                    // image file successfully added, so video no longer reuqired
+                    var vid_element = document.getElementById('video_file')
+                    vid_element.removeAttribute("required")
+                  }
+                } else {
+                  imgpath.value = "";
+                }
+              }
+            });
+          });
+
+          // $(document).ready(function() {
+          $('#video_file').ready(function() {
             $('input[type="file"]').change(function() {
               var vidpath = document.getElementById('video_file');
               if (!vidpath.value == "") {
                 var vid = vidpath.files[0].size;
                 var vidsize = vid / (1024 * 1024);
+                var file = vidpath.files[0];
                 if (file && file['type'].split('/')[0] === 'video') {
                   if (vidsize > 4) {
                     alert("Video file size should be less than 4 MB");
                     vidpath.value = "";
+                  } else {
+                    // video file successfully added, so image no longer reuqired
+                    var img_element = document.getElementById('image_file')
+                    img_element.removeAttribute("required")
                   }
-                } else
+                } else {
                   vidpath.value = "";
+                }
               }
             });
           });
@@ -140,7 +176,10 @@
       </form>
 
       <script type="text/javascript">
-        function check() {}
+        function check() {
+          alert("This project has been submitted.");
+          window.location.reload();
+        }
       </script>
 
     </main>
