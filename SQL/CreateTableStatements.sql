@@ -19,11 +19,11 @@ CREATE TABLE Projects (
   title             TEXT NOT NULL,
   description       TEXT NOT NULL,
   category          TEXT NOT NULL,
-  keywords          TEXT,
+  keywords          TEXT NOT NULL,
   code              TEXT NOT NULL,
+  hw_links          TEXT NOT NULL,
   image_file        TEXT,
-  video_file        TEXT,
-  num_downloads     INTEGER  DEFAULT 0
+  video_file        TEXT
 );
 
 
