@@ -2,7 +2,7 @@
 UPDATE Persons
 SET
   account_number = '{{payload.account_number}}',
-  account_date = CURRENT_TIMESTAMP()
+  account_date = CURRENT_TIMESTAMP
 WHERE
   email = '{{payload.email}}';
 
@@ -41,6 +41,7 @@ WHERE
 -- is pressed on the project_check.html page for an existing issue.
 UPDATE ProjectIssues
 SET
-  issue_text = '{{payload.issue_text}}'
+  issue_text = '{{payload.issue_text}}',
+  last_update = CURRENT_TIMESTAMP
 WHERE
   project_id = '{{payload.project_id}}';

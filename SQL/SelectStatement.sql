@@ -22,15 +22,29 @@ ORDER BY Projects.submission_date ASC, num_reviews ASC
 --
 -- Populate the project_check.html, project_correction.html, and review_details.html webpages
 SELECT
+  title,
+  description,
+  code,
+  keywords,
+  hw_links,
+  image_file,
+  video_file
+FROM Projects
+WHERE id = {{req.params.project_id}}
+
+--
+-- Populate the check.html, project_correction.html, and review_details.html webpages
+SELECT
   id as project_id,
   title,
   description,
   code,
   keywords,
+  hw_links,
   image_file,
   video_file
 FROM Projects
-WHERE id = '{{payload.project_id}}'
+WHERE status = 'NEW'
 
 --
 -- Populate the results.html webpage table

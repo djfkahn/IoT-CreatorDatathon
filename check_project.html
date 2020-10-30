@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Datathon Project Check
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link href="../datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <script type="text/javascript">
+      function copyCode() {
+        /* Get the text field */
+        var copyText = document.getElementById("code");
+        /* Select the text field */
+        copyText.select();
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+        /* Alert the copied text */
+        alert("Code Copied ");
+        ``
+      }
+    </script>
+
+    <head>
+      <img class="head-image" src="../theme/header/IoTCreator.png">
+      <h1>Datathon Proejct Check</h1>
+      <hr>
+    </head>
+
+    <main>
+      <h2>Project's Information</h2>
+      <img height="200px" src={{{Image_Src}}}>
+      <video height="200px" src={{{Video_Src}}} controls>Video Not Available</video>
+      <br>
+
+      <label>Project Title: </label>
+      <label class="longlabel" style="width:400px;">{{query.title}}</label>
+      <br>
+
+      <label for="description">Description</label>
+      <textarea rows="10" cols="55" id="description" name="description" readonly>{{query.description}}</textarea>
+      <br>
+
+      <label>Keywords: </label>
+      <label class="longlabel" style="width:400px;">{{query.keyword}}</label>
+      <br>
+
+      <label for="hw_links">HW Links</label>
+      <textarea rows="10" cols="55" id="hw_links" name="hw_links" readonly>{{query.hw_links}}</textarea>
+      <br>
+
+      <hr>
+
+      <label style="font-weight: bold;" for="Code"> Code</label>
+      <textarea id="code" rows="10" cols="55" readonly>{{query.code}}</textarea>
+      <br>
+
+      <button onclick="copyCode()" id="copy">Copy Code</button>
+      <br>
+      <hr>
+
+      <form class="" action="/check">
+        <label for="issue_text">Issue</label>
+        <textarea rows="10" cols="55" id="issue_text" name="issue_text">{{{query.issue_text}}}</textarea>
+        <br>
+
+        <button onclick="readyCode()" id="ready">Ready</button>
+        <button onclick="logIssue()" id="log_issue">Log Issue</button>
+      </form>
+
+      <script type="text/javascript">
+        var formData = {
+          "project_id": 0,
+          "issue_text": ""
+        };
+
+        function readyCode() {
+          formData["project_id"] = "{{query.project_id}}";
+          var data = JSON.stringify(formData);
+
+          let xhr = new XMLHttpRequest();
+          let url = "../check_ready";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+          alert("Project is Ready");
+          ``
+        }
+
+        function logIssue() {
+          formData["project_id"] = "{{query.project_id}}";
+          formData["issue_text"] = document.getElementById('issue_text').value;
+          var data = JSON.stringify(formData);
+
+          let xhr = new XMLHttpRequest();
+          let url = "../check_issue";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+          alert("Issue with project logged.");
+          ``
+        }
+      </script>
+
+    </main>
+  </body>
+
+</html>
