@@ -93,6 +93,7 @@
       </section>
 
       <section class="right-column">
+        <p><strong>Remember: review is not recorded until Submit button below is clicked!</strong></p>
         <h3>Creativity</h3>
         <div id="creativity" class="ui star rating" data-max-rating="5" data-rating="0"></div>
         <h3>Completeness</h3>
@@ -113,7 +114,7 @@
         <script type="text/javascript">
           var reviewResults = {
             "project_id": 0,
-            // "email": "",
+            "reviewer_id": 0,
             "creativity": 0,
             "completeness": 0,
             "correctness": 0,
@@ -125,46 +126,46 @@
               reviewResults[this.id] = value;
             });
 
-          function getTitle() {
-            var rowID = document.getElementById("RowID").value;
-            reviewResults["project_id"] = rowID;
-            var title = document.getElementById("title");
-
-            var url = "https://iot-creator.org:2022/reviewData/" + rowID;
-            let request = new XMLHttpRequest();
-            request.open('GET', url, true);
-            request.responseType = 'text';
-
-            request.onload = function() {
-              if (request.response.includes("Cannot"))
-                title.innerHTML = "";
-              else {
-                var reviewData = JSON.parse(request.response);
-                title.innerHTML = reviewData[0].descriptive_title;
-                populateReviewData();
-              }
-            };
-
-            request.send();
-            //clear ratings
-            $('.ui.rating')
-              .rating('set rating', 0, 0);
-          }
+          // function getTitle() {
+          //   var rowID = document.getElementById("RowID").value;
+          //   reviewResults["project_id"] = rowID;
+          //   var title = document.getElementById("title");
+          //
+          //   var url = "https://iot-creator.org:2022/reviewData/" + rowID;
+          //   let request = new XMLHttpRequest();
+          //   request.open('GET', url, true);
+          //   request.responseType = 'text';
+          //
+          //   request.onload = function() {
+          //     if (request.response.includes("Cannot"))
+          //       title.innerHTML = "";
+          //     else {
+          //       var reviewData = JSON.parse(request.response);
+          //       title.innerHTML = reviewData[0].descriptive_title;
+          //       populateReviewData();
+          //     }
+          //   };
+          //
+          //   request.send();
+          //   //clear ratings
+          //   $('.ui.rating')
+          //     .rating('set rating', 0, 0);
+          // }
 
           function save() {
             let xhr = new XMLHttpRequest();
             let url = "https://iot-creator.org:2022/saveReview";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            // reviewResults["email"] = "{{global.user}}";
+            reviewResults["reviewer_id"] = "{{global.person_id}}";
             var data = JSON.stringify(reviewResults);
             xhr.send(data);
             alert("Thank you for sumbitting a review.  It has been saved.");
           }
 
-          function populateReviewData() {
-            var creativity = document.getElementById("creativity");
-          }
+          // function populateReviewData() {
+          //   var creativity = document.getElementById("creativity");
+          // }
         </script>
       </section>
 

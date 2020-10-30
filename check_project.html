@@ -39,25 +39,25 @@
       <br>
 
       <label>Project Title: </label>
-      <label class="longlabel" style="width:400px;">{{query.title}}</label>
+      <label class="longlabel" style="width:400px;">{{{query.title}}}</label>
       <br>
 
       <label for="description">Description</label>
-      <textarea rows="10" cols="55" id="description" name="description" readonly>{{query.description}}</textarea>
+      <textarea rows="10" cols="55" id="description" name="description" readonly>{{{query.description}}}</textarea>
       <br>
 
       <label>Keywords: </label>
-      <label class="longlabel" style="width:400px;">{{query.keyword}}</label>
+      <label class="longlabel" style="width:400px;">{{{query.keyword}}}</label>
       <br>
 
       <label for="hw_links">HW Links</label>
-      <textarea rows="10" cols="55" id="hw_links" name="hw_links" readonly>{{query.hw_links}}</textarea>
+      <textarea rows="10" cols="55" id="hw_links" name="hw_links" readonly>{{{query.hw_links}}}</textarea>
       <br>
 
       <hr>
 
       <label style="font-weight: bold;" for="Code"> Code</label>
-      <textarea id="code" rows="10" cols="55" readonly>{{query.code}}</textarea>
+      <textarea id="code" rows="10" cols="55" readonly>{{{query.code}}}</textarea>
       <br>
 
       <button onclick="copyCode()" id="copy">Copy Code</button>
