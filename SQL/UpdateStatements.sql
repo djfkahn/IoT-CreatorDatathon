@@ -29,12 +29,17 @@ WHERE
 -- project_correction.html page
 UPDATE Projects
 SET
-  cloud_code = '{{payload.code}}',
+  status = '{{payload.status}}',
+  title = '{{payload.title}}',
+  description = '{{payload.description}}',
+  keywords = '{{payload.keywords}}',
+  hw_links = '{{payload.hw_links}}',
+  code = '{{payload.code}}',
   image_file = '{{payload.image_file}}',
   video_file = '{{payload.video_file}}',
-  submission_date = CURRENT_TIMESTAMP()
+  submission_date = CURRENT_TIMESTAMP
 WHERE
-  id = '{{payload.project_id}}';
+  id = {{payload.project_id}};
 
 
 -- This UPDATE statement replaces the issue_text when the "Log Issue" button

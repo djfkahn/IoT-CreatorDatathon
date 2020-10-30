@@ -3,54 +3,43 @@
 
   <header>
     <title>
-      Datathon Project Submit
+      Datathon Project Correct
     </title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
-    <link href="./datathon.css" rel="stylesheet">
+    <link href="../datathon.css" rel="stylesheet">
   </header>
 
 
   <body>
 
     <head>
-      <img class="head-image" src="theme/header/IoTCreator.png">
-      <h1>Datathon Submit Step 2</h1>
+      <img class="head-image" src="../theme/header/IoTCreator.png">
+      <h1>Datathon Project Correction</h1>
       <hr>
     </head>
 
     <main>
-      <form method="post" enctype="multipart/form-data" onsubmit="save();" action="/saveSubmit">
-        <h2>1. Project's Information</h2>
+      <h2>1. Project's Information</h2>
+      <form enctype="multipart/form-data" onsubmit="save();" method="post" action="../saveCorrect">
         <label for="title">Title</label>
-        <input size="80" pattern="\s*(\S\s*){3,}" id="title" name="title" placeholder="Project title, max 80 characters" required>
+        <input size="80" pattern="\s*(\S\s*){3,}" id="title" name="title" value="{{{query.title}}}" required>
         <br>
 
         <label for="description">Description</label>
-        <textarea rows="10" cols="78" id="description" name="description" placeholder="Describe project in detail" required></textarea>
+        <textarea rows="10" cols="78" id="description" name="description">{{{query.description}}}</textarea>
         <br>
 
         <label for="category">Category</label>
-        <select id="category" name="category" required>
-          <option value="none" selected disabled hidden> Select a Category</option>
-          <option value="Home Automation - Indoor">Home Automation - Indoor</option>
-          <option value="Home Automation - Outdoor">Home Automation - Outdoor</option>
-          <option value="Home Lighting">Home Lighting</option>
-          <option value="Home Security">Home Security</option>
-          <option value="Smart Appliances & Furniture">Smart Appliances & Furniture</option>
-          <option value="Chore Management">Chore Management</option>
-          <option value="Entertainment & Games">Entertainment & Games</option>
-          <option value="Health, Wellness, Fitness & Nutrition">Health, Wellness, Fitness & Nutrition</option>
-          <option value="School & Education">School & Education</option>
-        </select>
+        <label class="longlabel" style="width:400px;">{{{query.category}}}</label>
         <br>
 
         <label for="keywords">Keywords</label>
-        <input size="80" pattern="\s*(\S\s*){4,}" id="keywords" name="keywords" placeholder="Enter comma separated keywords" required>
+        <input size="80" id="keywords" name="keywords" value="{{query.keywords}}" required>
         <br>
 
         <label for="hw_links">Hardware Links</label>
-        <textarea rows="5" cols="78" id="hw_links" name="hw_links" placeholder="Paste links to hardware description (e.g. where to buy) for hardware used in the project." required></textarea>
+        <textarea rows="5" cols="78" id="hw_links" name="hw_links" required>{{{query.hw_links}}}</textarea>
         <br>
 
         <br>
@@ -71,8 +60,8 @@
           IoT sensor data and to model IoT actuator actions.
         </p>
         <label for="code">Iot-Creator Code</label>
-        <!-- <br> -->
-        <textarea rows="15" cols="78" id="code" name="code" placeholder="Paste exported IoT-Creator flow in JSON format" required></textarea>
+        <br>
+        <textarea id="code" name="code" rows="15" cols="100" required>{{{query.code}}}</textarea>
         <br>
 
         <p>
@@ -143,21 +132,20 @@
 
         <hr>
 
-        <h2>3. Finalize Submission</h2>
+        <h2>3. Submit Correction</h2>
+        <input type="text" name="project_id" value="{{query.project_id}}" hidden="true">
         <label class="longlabel" for="submit">
-          Click button below to submit project. Once submitted, the project cannot be modified.
+          Click button below to submit the corrected project.
         </label>
         <br>
-        <input type="text" name="status" value="NEW" hidden="true">
-        <input type="text" name="creator_id" value="{{payload.person_id}}" hidden="true">
         <button type="submit" id="submit" name="submit">Submit</button>
         <br><br>
       </form>
 
       <script type="text/javascript">
         var formData = {
-          "status": "NEW",
-          "creator_id": "{{payload.person_id}}",
+          "status": "",
+          "project_id": "",
           "title": "",
           "description": "",
           "category": "",
@@ -169,8 +157,8 @@
         };
 
         function save() {
-          formData["status"] = "NEW";
-          formData["creator_id"] = "{{payload.person_id}}";
+          formData["status"] = "UPDATED";
+          formData["project_id"] = document.getElementById('project_id').value;
           formData["title"] = document.getElementById('title').value;
           formData["description"] = document.getElementById('description').value;
           formData["category"] = document.getElementById('category').value;
@@ -183,7 +171,7 @@
           alert("sending data - " + data)
 
           let xhr = new XMLHttpRequest();
-          let url = "./saveSubmit";
+          let url = "../saveCorrect";
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-Type", "application/json");
           xhr.send(data);
