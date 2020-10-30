@@ -21,7 +21,7 @@
 
     <main>
       <h2>Please Identify</h2>
-      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./submit_code">
+      <form method="post" enctype="multipart/form-data" onsubmit="check();" action="./submit_code">
         <label class="longlabel" for="email">
           Please enter the email address you used to register:
         </label>
@@ -34,7 +34,20 @@
       </form>
 
       <script type="text/javascript">
-        function check() {}
+        var formData = {
+          "email": ""
+        };
+
+        function check() {
+          formData["email"] = document.getElementById('email').value;
+          var data = JSON.stringify(formData);
+          let xhr = new XMLHttpRequest();
+          let url = "./submit_code";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+
+        }
       </script>
 
     </main>

@@ -7,13 +7,13 @@ CREATE TABLE Persons (
   registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
   account_date      DATETIME,
   account_number    INTEGER,
-  role              ENUM('CREATOR','JUDGE','FACILITATOR')
+  role              TEXT NOT NULL
 );
 
 
 CREATE TABLE Projects (
   id                INTEGER PRIMARY KEY,
-  status            ENUM('NEW','ISSUE_IDENTIFIED','READY'),
+  status            TEXT NOT NULL,
   submission_date   DATETIME DEFAULT CURRENT_TIMESTAMP,
   creator_id        INTEGER NOT NULL,
   title             TEXT NOT NULL,

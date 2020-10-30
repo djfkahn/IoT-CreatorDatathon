@@ -20,8 +20,8 @@
     </head>
 
     <main>
-      <h2>1. Project's Information</h2>
-      <form method="post" enctype="multipart/form-data" action"_top">
+      <form method="post" enctype="multipart/form-data" onsubmit="save();" action="/saveSubmit">
+        <h2>1. Project's Information</h2>
         <label for="title">Title</label>
         <input size="80" pattern="\s*(\S\s*){3,}" id="title" name="title" placeholder="Project title, max 80 characters" required>
         <br>
@@ -149,14 +149,16 @@
           Click button below to submit project. Once submitted, the project cannot be modified.
         </label>
         <br>
-        <button onclick="save()" type="submit" id="submit" name="submit">Submit</button>
+        <input type="text" name="status" value="NEW" hidden="true">
+        <input type="text" name="creator_id" value="{{payload.person_id}}" hidden="true">
+        <button type="submit" id="submit" name="submit">Submit</button>
         <br><br>
       </form>
 
       <script type="text/javascript">
-        var reviewResults = {
+        var formData = {
           "status": "NEW",
-          "creator_id": "{{person_id}}",
+          "creator_id": "{{payload.person_id}}",
           "title": "",
           "description": "",
           "category": "",
@@ -168,22 +170,24 @@
         };
 
         function save() {
+          formData["status"] = "NEW";
+          formData["creator_id"] = "{{payload.person_id}}";
+          formData["title"] = document.getElementById('title').value;
+          formData["description"] = document.getElementById('description').value;
+          formData["category"] = document.getElementById('category').value;
+          formData["keywords"] = document.getElementById('keywords').value;
+          formData["code"] = document.getElementById('code').value;
+          formData["hw_links"] = document.getElementById('hw_links').value;
+          formData["image_file"] = document.getElementById('image_file');
+          formData["video_file"] = document.getElementById('video_file');
+          var data = JSON.stringify(formData);
+          alert("sending data - " + data)
+
           let xhr = new XMLHttpRequest();
-          let url = "https://iot-creator.org:2022/saveSubmission";
+          let url = "./saveSubmit";
           xhr.open("POST", url, true);
           xhr.setRequestHeader("Content-Type", "application/json");
-          reviewResults["title"] = document.getElementById('title');
-          reviewResults["description"] = document.getElementById('description');
-          reviewResults["category"] = document.getElementById('category');
-          reviewResults["keywords"] = document.getElementById('keywords');
-          reviewResults["code"] = document.getElementById('code');
-          reviewResults["hw_links"] = document.getElementById('hw_links');
-          reviewResults["image_file"] = document.getElementById('image_file');
-          reviewResults["video_file"] = document.getElementById('video_file');
-          var data = JSON.stringify(reviewResults);
           xhr.send(data);
-          alert("This project has been submitted.");
-          window.location.reload();
         }
       </script>
 

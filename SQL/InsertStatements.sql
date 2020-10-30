@@ -34,19 +34,21 @@ INSERT INTO Projects (
   creator_id,
   title,
   description,
-  cateogory,
+  category,
   keywords,
   code,
+  hw_links,
   image_file,
   video_file
 ) VALUES (
-  'NEW',
+  '{{payload.status}}',
   '{{payload.creator_id}}',
   '{{payload.title}}',
   '{{payload.description}}',
   '{{payload.cateogory}}',
   '{{payload.keywords}}',
   '{{payload.code}}',
+  '{{payload.hw_links}}',
   '{{payload.image_file}}',
   '{{payload.video_file}}'
 );
