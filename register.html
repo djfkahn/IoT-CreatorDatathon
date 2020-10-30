@@ -20,43 +20,43 @@
     </head>
 
     <main>
-      <h2>1. Terms and Conditions</h2>
-      <p>
-        By checking the box below, you affirm your are 16 years old or older, and
-        that you have read, understood, and accept the
-        <a target="_blank" href="https://docs.google.com/document/d/1QDLcBS4u_xZTO-BBwOthQT72nTc-oSKTMc8_yta3Br0/edit?ts=5f7f5aac">terms and conditions</a>
-        of this event.
-      </p>
-      <input type="checkbox" id="terms">
-      <label class="longlabel" for="terms" name="terms">
-        I am at least 16 years old, and I accept the terms and conditions of the datathon.
-      </label>
-      <br>
-      <hr>
+      <form method="post" enctype="multipart/form-data" onsubmit="save();" action="/saveRegister">
+        <h2>1. Terms and Conditions</h2>
+        <p>
+          By checking the box below, you affirm your are 16 years old or older, and
+          that you have read, understood, and accept the
+          <a target="_blank" href="https://docs.google.com/document/d/1QDLcBS4u_xZTO-BBwOthQT72nTc-oSKTMc8_yta3Br0/edit?ts=5f7f5aac">terms and conditions</a>
+          of this event.
+        </p>
+        <input type="checkbox" id="terms">
+        <label class="longlabel" for="terms" name="terms">
+          I am at least 16 years old, and I accept the terms and conditions of the datathon.
+        </label>
+        <br>
+        <hr>
 
-      <h2>2. Privacy</h2>
-      <p>
-        We collect the minimum information required to communicate with you about
-        Datathon related matters. This information will be stored in the United States
-        and will not be moved without your approval. Our privacy policy can be found
-        <a target="_blank" href="https://docs.google.com/document/d/1q6jJPxSV-M_Zy7vLTTChUBuCQfDS62pNEkkqSjtGQUE/edit?ts=5f7f5a95#">here</a>.
-      </p>
-      <p>
-        After completing the registration process, we will send you an email asking you to
-        fill out an anonymous survey at SurveyMonkey.com. The surevey allows us to measure
-        whether our outreach efforts are effectively reaching a diverse set of IoT enthusiasts.
-        The answers to that survey will <strong>not</strong> be tied back to your individual Datathon registration.
-      </p>
-      <input type="checkbox" id="privacy" disabled="true">
-      <label class="longlabel" for="privacy" name="privacy">
-        I permit the IoT-Creator Datathon to store my contact information for datathon-related
-        communication.
-      </label>
-      <br>
-      <hr>
+        <h2>2. Privacy</h2>
+        <p>
+          We collect the minimum information required to communicate with you about
+          Datathon related matters. This information will be stored in the United States
+          and will not be moved without your approval. Our privacy policy can be found
+          <a target="_blank" href="https://docs.google.com/document/d/1q6jJPxSV-M_Zy7vLTTChUBuCQfDS62pNEkkqSjtGQUE/edit?ts=5f7f5a95#">here</a>.
+        </p>
+        <p>
+          After completing the registration process, we will send you an email asking you to
+          fill out an anonymous survey at SurveyMonkey.com. The surevey allows us to measure
+          whether our outreach efforts are effectively reaching a diverse set of IoT enthusiasts.
+          The answers to that survey will <strong>not</strong> be tied back to your individual Datathon registration.
+        </p>
+        <input type="checkbox" id="privacy" disabled="true">
+        <label class="longlabel" for="privacy" name="privacy">
+          I permit the IoT-Creator Datathon to store my contact information for datathon-related
+          communication.
+        </label>
+        <br>
+        <hr>
 
-      <h2>3. Registrant's Information</h2>
-      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="_top">
+        <h2>3. Registrant's Information</h2>
         <label for="first_name">First Name: </label>
         <input pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
         <br>
@@ -65,9 +65,6 @@
         <br>
         <label for="email">Enter Email: </label>
         <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-        <br>
-        <label for="email2">Re-Enter Email: </label>
-        <input type="email2" id="email2" name="email2" placeholder="Re-enter your email address" required>
         <br>
         <hr>
 
@@ -84,20 +81,20 @@
         </ul>
         <!-- This code needs to be reexamined. It has not been working
              since button was disabled by default. -->
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick" />
+        <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
+        <input type="hidden" name="cmd" value="_s-xclick" />
 
-          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
+        <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
 
-          <button type="button" id="pay" name="pay" disabled="true">
-            Pay Entry Fee via PayPal
-          </button>
+        <button type="button" id="pay" name="pay" disabled="true">
+          Pay Entry Fee via PayPal
+        </button>
 
-          <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-          <noscript>
-            <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-          </noscript>
-        </form>
+        <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+        <noscript>
+          <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+        </noscript>
+        <!-- </form> -->
         <hr>
 
         <h2>5. Finalize Registration</h2>
@@ -111,14 +108,22 @@
       </form>
 
       <script type="text/javascript">
-        function check() {
-          var email1 = document.getElementById('email');
-          var eamil2 = document.getElementById('email2');
-          if (email1.value == email2.value) {
-            return "true"
-          } else {
-            return "false"
-          }
+        var formData = {
+          "first_name": "",
+          "last_name": "",
+          "email": ""
+        };
+
+        function save() {
+          formData["first_name"] = document.getElementById('first_name').value;
+          formData["last_name"] = document.getElementById('last_name').value;
+          formData["email"] = document.getElementById('email').value;
+          var data = JSON.stringify(formData);
+          let xhr = new XMLHttpRequest();
+          let url = "./saveRegister";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
         }
 
         $('#terms').on('click', function() {
@@ -135,17 +140,6 @@
           $('#privacy').attr('disabled', true);
           $('#pay').attr('disabled', true);
           $('#register').attr('disabled', false);
-        });
-        $('#register').on('click', function() {
-          var result = check();
-          if (result == "true") {
-            $('#terms').attr('disabled', true);
-            $('#privacy').attr('disabled', true);
-            $('#register').attr('disabled', true);
-            alert("Thank you for starting your registeration.  Please check your inbox for an email with a link to progress to the next step.  You may close this window.")
-          } else {
-            alert("Email entries do not match.  Please try again.")
-          }
         });
       </script>
     </main>
