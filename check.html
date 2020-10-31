@@ -26,7 +26,11 @@
           <th colspan="2">Project Title</th>
           <th>Status</th>
         </thead>
-        {{{payload}}}
+        {{#payload}}
+          <td>{{project_id}}</td>
+          <td><a href="./check_project/{{project_id}}">{{title}}</a></td>
+          <td>{{status}}</td>
+        {{/payload}}
       </table>
 
     </main>
