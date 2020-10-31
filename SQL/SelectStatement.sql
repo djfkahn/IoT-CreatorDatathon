@@ -57,8 +57,7 @@ SELECT
   AVG(Reviews.completeness) as avg_completeness,
   AVG(Reviews.correctness) as avg_correctness,
   AVG(Reviews.readability) as avg_readability,
-  AVG(Reviews.user_interface) as avg_user_interface,
-  (avg_creativity + avg_completeness + avg_correctness + avg_readability + avg_user_interface) as overall_score,
+  AVG(Reviews.user_interface) as avg_user_interface
 FROM Projects
 JOIN Reviews ON Projects.id = Reviews.project_id
 GROUP BY project_id
