@@ -35,16 +35,18 @@
 
         </thead>
         <tr>
-          <td>{{project_id}}</td>
-          <td>{{title}}</td>
-          <td>{{num_reviews}}</td>
-          <td>{{category}}</td>
-          <td>{{avg_creativity}}</td>
-          <td>{{avg_completeness}}</td>
-          <td>{{avg_correctness}}</td>
-          <td>{{avg_readability}}</td>
-          <td>{{avg_user_interface}}</td>
-          <td>{{overall_score}}</td>
+          {{#payload}}
+            <td>{{row_num}}</td>
+            <td>{{title}}</td>
+            <td>{{num_reviews}}</td>
+            <td>{{category}}</td>
+            <td>{{avg_creativity}}</td>
+            <td>{{avg_completeness}}</td>
+            <td>{{avg_correctness}}</td>
+            <td>{{avg_readability}}</td>
+            <td>{{avg_user_interface}}</td>
+            <td>{{overall_score}}</td>
+          {{/payload}}
         </tr>
       </table>
 
