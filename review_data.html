@@ -7,7 +7,7 @@
     </title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet">
-    <link href="./datathon.css" rel="stylesheet">
+    <link href="../datathon.css" rel="stylesheet">
   </header>
 
 
@@ -47,7 +47,7 @@
     </script>
 
     <head>
-      <img class="head-image" src="theme/header/IoTCreator.png">
+      <img class="head-image" src="../theme/header/IoTCreator.png">
       <h1>Datathon Review Step 3</h1>
       <hr>
     </head>
@@ -55,22 +55,20 @@
     <main>
       <section class="left-column">
         <h2>Project's Information</h2>
-        <img height="200px" src="Images/Datathon DB Schema image-2020-10-01.png">
-        <video height="200px" src="Videos/realshort.mp4" controls>Video Not Available</video>
-        <!-- <img height="200px" src="{{image_file}}">
-        <video height="200px" src="{{video_file}}" controls>Video Not Available</video> -->
+        <img height="200px" src={{{Image_Src}}}>
+        <video height="200px" src={{{Video_Src}}} controls>Video Not Available</video>
         <br>
 
         <label>Project Title: </label>
-        <label class="longlabel" style="width:400px;">{{title}}</label>
+        <label class="longlabel" style="width:400px;">{{query.title}}</label>
         <br>
 
         <label for="Description">Description</label>
-        <textarea rows="10" cols="55" name="comment" form="usrform" readonly>{{description}}</textarea>
+        <textarea rows="10" cols="55" name="comment" form="usrform" readonly>{{query.description}}</textarea>
         <br>
 
         <label>Keywords: </label>
-        <label class="longlabel" style="width:400px;">{{keyword}}</label>
+        <label class="longlabel" style="width:400px;">{{query.keyword}}</label>
         <br>
 
         <hr>
@@ -85,7 +83,7 @@
           <li>Click "Import" button.</li>
         </ol>
         <label style="font-weight: bold;" for="Code"> Code</label>
-        <textarea id="code" rows="10" cols="55" readonly>{{code}}</textarea>
+        <textarea id="code" rows="10" cols="55" readonly>{{query.code}}</textarea>
         <br>
 
         <button onclick="copyCode()" id="copy">Copy Code</button>
@@ -126,46 +124,18 @@
               reviewResults[this.id] = value;
             });
 
-          // function getTitle() {
-          //   var rowID = document.getElementById("RowID").value;
-          //   reviewResults["project_id"] = rowID;
-          //   var title = document.getElementById("title");
-          //
-          //   var url = "https://iot-creator.org:2022/reviewData/" + rowID;
-          //   let request = new XMLHttpRequest();
-          //   request.open('GET', url, true);
-          //   request.responseType = 'text';
-          //
-          //   request.onload = function() {
-          //     if (request.response.includes("Cannot"))
-          //       title.innerHTML = "";
-          //     else {
-          //       var reviewData = JSON.parse(request.response);
-          //       title.innerHTML = reviewData[0].descriptive_title;
-          //       populateReviewData();
-          //     }
-          //   };
-          //
-          //   request.send();
-          //   //clear ratings
-          //   $('.ui.rating')
-          //     .rating('set rating', 0, 0);
-          // }
-
           function save() {
+            reviewResults["project_id"] = '{{query.project_id}}';
+            reviewResults["reviewer_id"] = '{{query.reviewer_id}}';
+            var data = JSON.stringify(reviewResults);
+
             let xhr = new XMLHttpRequest();
-            let url = "https://iot-creator.org:2022/saveReview";
+            let url = "../saveReview";
             xhr.open("POST", url, true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            reviewResults["reviewer_id"] = "{{global.person_id}}";
-            var data = JSON.stringify(reviewResults);
             xhr.send(data);
             alert("Thank you for sumbitting a review.  It has been saved.");
           }
-
-          // function populateReviewData() {
-          //   var creativity = document.getElementById("creativity");
-          // }
         </script>
       </section>
 

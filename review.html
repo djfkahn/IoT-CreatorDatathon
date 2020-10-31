@@ -21,7 +21,7 @@
 
     <main>
       <h2>Please Identify</h2>
-      <form method="post" enctype="multipart/form-data" onsubmit="return check();" action="./review_list">
+      <form method="post" enctype="multipart/form-data" onsubmit="check();" action="./review_list">
         <label class="longlabel" for="email">
           Please enter the email address you used to register, so we can generate a list of candidate projects for you to review
         </label>
@@ -34,7 +34,20 @@
       </form>
 
       <script type="text/javascript">
-        function check() {}
+        var formData = {
+          "email": ""
+        };
+
+        function check() {
+          formData["email"] = document.getElementById('email').value;
+          var data = JSON.stringify(formData);
+          let xhr = new XMLHttpRequest();
+          let url = "./submit_code";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+
+        }
       </script>
 
     </main>
