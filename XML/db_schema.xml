@@ -39,185 +39,135 @@
 		</group>
 	</datatypes>
 	<table x="96" y="159" name="Persons">
-		<row name="id" null="1" autoincrement="1">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="data_authorized" null="0" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>'NULL'</default>
-			<comment>When the Person authorized storage of their data for Datathon purposes.</comment>
-		</row>
-		<row name="first_name" null="0" autoincrement="0">
-			<datatype>VARCHAR(20)</datatype>
-			<default>'NULL'</default>
-		</row>
-		<row name="last_name" null="0" autoincrement="0">
-			<datatype>VARCHAR(20)</datatype>
-			<default>'NULL'</default>
-		</row>
-		<row name="email" null="0" autoincrement="0">
-			<datatype>VARCHAR(30)</datatype>
-			<default>'NULL'</default>
-		</row>
-		<row name="email_confirmed" null="1" autoincrement="0">
-			<datatype>ENUM</datatype>
-			<default>NO</default>
-			<comment>Values = {NO, YES}</comment>
-		</row>
-		<row name="registration_date" null="0" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>'NULL'</default>
-		</row>
-		<row name="paid" null="1" autoincrement="0">
-			<datatype>ENUM</datatype>
-			<default>No</default>
-			<comment>Values = {NO, YES}</comment>
-		</row>
-		<row name="account_date" null="1" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="account_number" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>0</default>
-		</row>
-		<row name="role" null="1" autoincrement="0">
-			<datatype>ENUM</datatype>
-			<default>NULL</default>
-			<comment>Values = {CREATOR, FACILITATOR, JUDGE, ADMIN}</comment>
-		</row>
-		<key type="PRIMARY" name="">
-			<part>id</part>
-		</key>
-	</table>
-	<table x="650" y="304" name="Projects">
-		<row name="id" null="1" autoincrement="1">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="status" null="0" autoincrement="0">
-			<datatype>ENUM</datatype>
-			<default>NEW</default>
-			<comment>Values = {NEW, ISSUE_IDENTIFIED, READY, CLOSED}</comment>
-		</row>
-		<row name="submission_date" null="1" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="creator_id" null="0" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default><relation table="Persons" row="id"/>
-		</row>
-		<row name="title" null="0" autoincrement="0">
-			<datatype>VARCHAR(80)</datatype>
-			<default>'NULL'</default>
-		</row>
-		<row name="description" null="1" autoincrement="0">
-			<datatype>MEDIUMTEXT(1024)</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="category" null="1" autoincrement="0">
-			<datatype>VARCHAR</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="keywords" null="1" autoincrement="0">
-			<datatype>MEDIUMTEXT</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="cloud_code" null="1" autoincrement="0">
-			<datatype>MEDIUMTEXT</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="local_code" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="image_file" null="1" autoincrement="0">
-			<datatype>MEDIUMTEXT</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="video_file" null="1" autoincrement="0">
-			<datatype>MEDIUMTEXT</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="num_downloads" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default>
-		</row>
-		<key type="PRIMARY" name="">
-			<part>id</part>
-		</key>
-	</table>
-	<table x="925" y="137" name="Reviews">
-		<row name="id" null="1" autoincrement="1">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="reviewer_id" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default><relation table="Persons" row="id"/>
-		</row>
-		<row name="project_id" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default><relation table="Projects" row="id"/>
-		</row>
-		<row name="review_date" null="1" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="creativity" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>0</default>
-		</row>
-		<row name="completeness" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>0</default>
-		</row>
-		<row name="correctness" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>0</default>
-		</row>
-		<row name="readability" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>0</default>
-		</row>
-		<row name="user_interface" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>0</default>
-		</row>
-		<key type="PRIMARY" name="">
-			<part>id</part>
-		</key>
-	</table>
-	<table x="379" y="473" name="ProjectIssues">
-		<row name="id" null="1" autoincrement="1">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="project_id" null="0" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default><relation table="Projects" row="id"/>
-		</row>
-		<row name="person_id" null="1" autoincrement="0">
-			<datatype>INTEGER</datatype>
-			<default>NULL</default><relation table="Persons" row="id"/>
-			<comment>ID of person who identified the issue.</comment>
-		</row>
-		<row name="issue_text" null="0" autoincrement="0">
-			<datatype>MEDIUMTEXT</datatype>
-			<default>'NULL'</default>
-		</row>
-		<row name="date_created" null="1" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>NULL</default>
-		</row>
-		<row name="last_updated" null="1" autoincrement="0">
-			<datatype>DATETIME</datatype>
-			<default>NULL</default>
-		</row>
-		<key type="PRIMARY" name="">
-			<part>id</part>
-		</key>
-	</table>
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="data_authorized" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default><comment>When the Person authorized storage of their data for Datathon purposes.</comment>
+</row>
+<row name="first_name" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NULL'</default></row>
+<row name="last_name" null="0" autoincrement="0">
+<datatype>VARCHAR(20)</datatype>
+<default>'NULL'</default></row>
+<row name="email" null="0" autoincrement="0">
+<datatype>VARCHAR(30)</datatype>
+<default>'NULL'</default></row>
+<row name="registration_date" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="account_date" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="account_number" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<row name="role" null="1" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NULL</default><comment>Values = {CREATOR, FACILITATOR, JUDGE, ADMIN}</comment>
+</row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="394" y="302" name="Projects">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="status" null="0" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NEW</default><comment>Values = {NEW, ISSUE_IDENTIFIED, READY, CLOSED}</comment>
+</row>
+<row name="submission_date" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="creator_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Persons" row="id" />
+</row>
+<row name="title" null="0" autoincrement="0">
+<datatype>VARCHAR(80)</datatype>
+<default>'NULL'</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT(1024)</datatype>
+<default>NULL</default></row>
+<row name="category" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="keywords" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="code" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="hw_links" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="image_file" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<row name="video_file" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="702" y="137" name="Reviews">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="reviewer_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Persons" row="id" />
+</row>
+<row name="project_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Projects" row="id" />
+</row>
+<row name="review_date" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="creativity" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<row name="completeness" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<row name="correctness" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<row name="readability" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<row name="user_interface" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>0</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="701" y="458" name="ProjectIssues">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="project_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Projects" row="id" />
+</row>
+<row name="issue_text" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>'NULL'</default></row>
+<row name="date_created" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="last_updated" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
 </sql>
