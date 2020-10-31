@@ -45,7 +45,7 @@ INSERT INTO Projects (
   '{{payload.creator_id}}',
   '{{payload.title}}',
   '{{payload.description}}',
-  '{{payload.cateogory}}',
+  '{{payload.category}}',
   '{{payload.keywords}}',
   '{{payload.code}}',
   '{{payload.hw_links}}',
