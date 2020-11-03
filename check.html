@@ -3,7 +3,7 @@
 
   <header>
     <title>
-      Datathon Results
+      Check Projects
     </title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
@@ -13,23 +13,28 @@
 
   <body>
 
-    <head>
-      <img class="head-image" src="theme/header/IoTCreator.png">
-      <h1>Datathon Results</h1>
+    <header>
+      <!-- <img class="head-image" src="theme/header/IoTCreator.png"> -->
+      <!-- <img class="head-image" src="theme/header/Iot Creator Datathon Logo - White.png"> -->
+      <!-- <img class="head-image" src="theme/header/Iot Creator Datathon Logo.png"> -->
+      <img class="head-image" src="theme/header/Iot Creator Datathon Logo White.png">
+      <h1>Check Projects</h1>
       <hr>
-    </head>
+    </header>
 
     <main>
-      <h2>Project Ratings</h2>
+      <h2>Projects to Check</h2>
       <table>
         <thead>
           <th colspan="2">Project Title</th>
           <th>Status</th>
         </thead>
         {{#payload}}
-          <td>{{project_id}}</td>
-          <td><a href="./check_project/{{project_id}}">{{title}}</a></td>
-          <td>{{status}}</td>
+          <tr>
+            <td>{{project_id}}</td>
+            <td><a href="./check_project/{{project_id}}">{{{title}}}</a></td>
+            <td>{{status}}</td>
+          </tr>
         {{/payload}}
       </table>
 
