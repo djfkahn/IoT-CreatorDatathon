@@ -122,6 +122,10 @@ button:disabled {
   border-radius: 10px;
 }
 
+fieldset {
+  width: 75%
+}
+
 table {
   text-align: center;
   border-width: thin;

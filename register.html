@@ -28,10 +28,12 @@
           <a target="_blank" href="https://microfacturingusa.org/wp-content/uploads/2020/10/IoT-Creator-Datahon-Terms-and-Conditions.pdf">terms and conditions</a>
           of this event.
         </p>
-        <input type="checkbox" id="terms">
-        <label class="longlabel" for="terms" name="terms">
-          I am at least 16 years old, and I accept the terms and conditions of the datathon.
-        </label>
+        <fieldset>
+          <label class="longlabel" for="terms" name="terms">
+            <input type="checkbox" id="terms">
+            I am at least 16 years old, and I accept the terms and conditions of the datathon.
+          </label>
+        </fieldset>
         <br>
         <hr>
 
@@ -42,17 +44,13 @@
           and will not be moved without your approval. Our privacy policy can be found
           <a target="_blank" href="https://microfacturingusa.org/wp-content/uploads/2020/10/IoT-Creator-Datathon-Privacy-Policy.pdf">here</a>.
         </p>
-        <p>
-          After completing the registration process, we will send you an email asking you to
-          fill out an anonymous survey at SurveyMonkey.com. The surevey allows us to measure
-          whether our outreach efforts are effectively reaching a diverse set of IoT enthusiasts.
-          The answers to that survey will <strong>not</strong> be tied back to your individual Datathon registration.
-        </p>
-        <input type="checkbox" id="privacy" disabled="true">
-        <label class="longlabel" for="privacy" name="privacy">
-          I permit the IoT-Creator Datathon to store my contact information for datathon-related
-          communication.
-        </label>
+        <fieldset>
+          <label class="longlabel" for="privacy" name="privacy">
+            <input type="checkbox" id="privacy" disabled="true">
+            I permit the IoT-Creator Datathon to store my contact information for datathon-related
+            communication.
+          </label>
+        </fieldset>
         <br>
         <hr>
 
@@ -68,33 +66,40 @@
         <br>
         <hr>
 
-        <h2>4. Pay Registration Fee</h2>
+        <h2>4. Donate to Datathon</h2>
         <p>
-          This Datathon has a $25(US) entry fee which is submitted via PayPal. Please ensure the email
-          you provide for Datathon communication matches the PayPal sender email. This registration
-          fee entitles the contestant to:
+          This Datathon asks for a $25(US) donation submitted via PayPal. Please ensure the email
+          provided above matches the PayPal sender email. This donation entitles the contestant to:
         </p>
         <ul>
           <li>Unlimited project entries.</li>
           <li>Each project submitted is an opportunity to win cash prize.</li>
-          <li>One year subscription to IoT-Creator.</li>
+          <li>One year subscription to IoT-Creator (starting at the conclusion of the Datathon).</li>
         </ul>
         <!-- This code needs to be reexamined. It has not been working
              since button was disabled by default. -->
-        <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"> -->
-        <input type="hidden" name="cmd" value="_s-xclick" />
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick" />
 
-        <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
+          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
 
-        <button type="button" id="pay" name="pay" disabled="true">
-          Pay Entry Fee via PayPal
-        </button>
+        </form>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 
-        <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-        <noscript>
-          <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-        </noscript>
-        <!-- </form> -->
+          <input type="hidden" name="cmd" value="_s-xclick">
+
+          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ">
+
+          <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+          <noscript>
+            <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+          </noscript>
+
+          <button type="image" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+            Donate via PayPal
+          </button>
+        </form>
+
         <hr>
 
         <h2>5. Finalize Registration</h2>
@@ -133,9 +138,9 @@
         $('#privacy').on('click', function() {
           $('#terms').attr('disabled', true);
           $('#privacy').attr('disabled', true);
-          $('#pay').attr('disabled', false);
+          $('#donate').attr('disabled', false);
         });
-        $('#pay').on('click', function() {
+        $('#donate').on('click', function() {
           $('#terms').attr('disabled', true);
           $('#privacy').attr('disabled', true);
           $('#pay').attr('disabled', true);
