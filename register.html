@@ -20,7 +20,7 @@
     </head>
 
     <main>
-      <form method="post" enctype="multipart/form-data" onsubmit="save();" action="/saveRegister">
+      <form id="main-form" method="post" enctype="multipart/form-data">
         <h2>1. Terms and Conditions</h2>
         <p>
           By checking the box below, you affirm your are 16 years old or older, and
@@ -30,7 +30,7 @@
         </p>
         <fieldset>
           <label class="longlabel" for="terms" name="terms">
-            <input type="checkbox" id="terms">
+            <input form="main-form" type="checkbox" id="terms">
             I am at least 16 years old, and I accept the terms and conditions of the datathon.
           </label>
         </fieldset>
@@ -46,7 +46,7 @@
         </p>
         <fieldset>
           <label class="longlabel" for="privacy" name="privacy">
-            <input type="checkbox" id="privacy" disabled="true">
+            <input form="main-form" type="checkbox" id="privacy" disabled="true">
             I permit the IoT-Creator Datathon to store my contact information for datathon-related
             communication.
           </label>
@@ -56,13 +56,13 @@
 
         <h2>3. Registrant's Information</h2>
         <label for="first_name">First Name: </label>
-        <input pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
+        <input form="main-form" pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
         <br>
         <label for="last_name">Last Name: </label>
-        <input pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
+        <input form="main-form" pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
         <br>
         <label for="email">Enter Email: </label>
-        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <input form="main-form" type="email" id="email" name="email" placeholder="Enter your email address" required>
         <br>
         <hr>
 
@@ -76,29 +76,31 @@
           <li>Each project submitted is an opportunity to win cash prize.</li>
           <li>One year subscription to IoT-Creator (starting at the conclusion of the Datathon).</li>
         </ul>
-        <!-- This code needs to be reexamined. It has not been working
-             since button was disabled by default. -->
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+
+        <!-- START PAYPAL CODE -->
+        <!-- Both forms are needed for the PayPal buttons to work. -->
+        <form id="hidden-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
           <input type="hidden" name="cmd" value="_s-xclick" />
 
           <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
 
         </form>
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 
-          <input type="hidden" name="cmd" value="_s-xclick">
+          <input form="paypal-form" type="hidden" name="cmd" value="_s-xclick">
 
-          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ">
+          <input form="paypal-form" type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ">
 
           <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
           <noscript>
             <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
           </noscript>
 
-          <button type="image" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+          <button form="paypal-form" type="image" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
             Donate via PayPal
           </button>
         </form>
+        <!-- END PAYPAL CODE -->
 
         <hr>
 
@@ -108,7 +110,7 @@
           will receive an confirmation email shortly after.
         </label>
         <br>
-        <button type="submit" id="register" disabled="true">Register</button>
+        <button type="submit" form="main-form" id="register" onclick="save();" formaction="/saveRegister" form disabled="true">Register</button>
         <br><br>
       </form>
 
