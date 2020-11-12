@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Datathon Registration
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Registration</h1>
+      <hr>
+    </head>
+
+    <main>
+      <form id="main-form" method="post" enctype="multipart/form-data">
+        <h2>1. Terms and Conditions</h2>
+        <p>
+          By checking the box below, you affirm your are 16 years old or older, and
+          that you have read, understood, and accept the
+          <a target="_blank" href="https://microfacturingusa.org/wp-content/uploads/2020/10/IoT-Creator-Datahon-Terms-and-Conditions.pdf">terms and conditions</a>
+          of this event.
+        </p>
+        <fieldset>
+          <label class="longlabel" for="terms" name="terms">
+            <input form="main-form" type="checkbox" id="terms">
+            I am at least 16 years old, and I accept the terms and conditions of the datathon.
+          </label>
+        </fieldset>
+        <br>
+        <hr>
+
+        <h2>2. Privacy</h2>
+        <p>
+          We collect the minimum information required to communicate with you about
+          Datathon related matters. This information will be stored in the United States
+          and will not be moved without your approval. Our privacy policy can be found
+          <a target="_blank" href="https://microfacturingusa.org/wp-content/uploads/2020/10/IoT-Creator-Datathon-Privacy-Policy.pdf">here</a>.
+        </p>
+        <fieldset>
+          <label class="longlabel" for="privacy" name="privacy">
+            <input form="main-form" type="checkbox" id="privacy" disabled="true">
+            I permit the IoT-Creator Datathon to store my contact information for datathon-related
+            communication.
+          </label>
+        </fieldset>
+        <br>
+        <hr>
+
+        <h2>3. Registrant's Information</h2>
+        <label for="first_name">First Name: </label>
+        <input form="main-form" pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
+        <br>
+        <label for="last_name">Last Name: </label>
+        <input form="main-form" pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
+        <br>
+        <label for="email">Enter Email: </label>
+        <input form="main-form" type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <br>
+        <hr>
+
+        <h2>4. Donate to Datathon</h2>
+        <p>
+          As an early registrant, your $25(US) donation to the Datathon is being covered by
+          a sponsor. If you would like to make a donation anyway, it can be submitted via PayPal.
+          Please ensure the email provided above matches the PayPal sender email.
+          This donation entitles the contestant to:
+        </p>
+        <ul>
+          <li>Unlimited project entries.</li>
+          <li>Each project submitted is an opportunity to win cash prize.</li>
+          <li>One year subscription to IoT-Creator (starting at the conclusion of the Datathon).</li>
+        </ul>
+
+        <!-- START PAYPAL CODE -->
+        <!-- Both forms are needed for the PayPal buttons to work. -->
+        <form id="hidden-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+          <input type="hidden" name="cmd" value="_s-xclick" />
+
+          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
+
+        </form>
+        <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+
+          <input form="paypal-form" type="hidden" name="cmd" value="_s-xclick">
+
+          <input form="paypal-form" type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ">
+
+          <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+          <noscript>
+            <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+          </noscript>
+
+          <button form="paypal-form" type="image" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
+            Donate via PayPal
+          </button>
+        </form>
+        <!-- END PAYPAL CODE -->
+
+        <hr>
+
+        <h2>5. Finalize Registration</h2>
+        <label class="longlabel" for="register">
+          Clicking the button below will complete the registration process. You
+          will receive an confirmation email shortly after.
+        </label>
+        <br>
+        <button type="submit" form="main-form" id="register" onclick="save();" formaction="/saveRegister" form disabled="true">Register</button>
+        <br><br>
+      </form>
+
+      <script type="text/javascript">
+        var formData = {
+          "first_name": "",
+          "last_name": "",
+          "email": ""
+        };
+
+        function save() {
+          formData["first_name"] = document.getElementById('first_name').value;
+          formData["last_name"] = document.getElementById('last_name').value;
+          formData["email"] = document.getElementById('email').value;
+          var data = JSON.stringify(formData);
+          let xhr = new XMLHttpRequest();
+          let url = "./saveRegister";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+        }
+
+        $('#terms').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', false);
+        });
+        $('#privacy').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', true);
+          $('#donate').attr('disabled', false);
+          $('#register').attr('disabled', false);
+        });
+      </script>
+    </main>
+  </body>
+
+</html>
