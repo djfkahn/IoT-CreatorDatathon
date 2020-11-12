@@ -10,13 +10,27 @@ WHERE email = '{{payload.email}}'
 SELECT
   Projects.id as project_id,
   Projects.title as title,
-  COUNT(Reviews.id) as num_reviews,
   Projects.keywords as keywords,
-  Projects.category as category
+  Projects.category as category,
+  (SELECT COUNT(*) FROM Reviews where Reviews.project_id = Projects.id) as num_reviews,
+  {{payload.person_id}} as person_id
 FROM Projects
-JOIN Reviews ON Projects.id = Reviews.project_id
-WHERE Projects.creator_id != (SELECT id FROM Persons WHERE email = '{{payload.email}}')
-ORDER BY Projects.submission_date ASC, num_reviews ASC
+WHERE Projects.status = 'READY'
+  AND Projects.creator_id != {{payload.person_id}}
+ORDER BY num_reviews ASC;
+
+
+SELECT
+  Projects.id as project_id,
+  Projects.title as title,
+  Projects.keywords as keywords,
+  Projects.category as category,
+  (SELECT COUNT(*) FROM Reviews where Reviews.project_id = Projects.id) as num_reviews,
+  {{payload.person_id}} as person_id
+FROM Projects
+WHERE Projects.status = 'READY'
+  AND Projects.creator_id != {{payload.person_id}}
+ORDER BY num_reviews ASC;
 
 
 --

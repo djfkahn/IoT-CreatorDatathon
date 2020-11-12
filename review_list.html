@@ -3,7 +3,7 @@
 
   <header>
     <title>
-      Datathon Project Review
+      Project Review
     </title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
@@ -14,8 +14,8 @@
   <body>
 
     <head>
-      <img class="head-image" src="theme/header/IoTCreator.png">
-      <h1>Datathon Review Step 2</h1>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Review Step 2</h1>
       <hr>
     </head>
 
@@ -25,18 +25,16 @@
         <thead>
           <th colspan="2">Project Title</th>
           <th>Number of <br> Reviews</th>
-          <th>Keywords</th>
           <th>Category</th>
         </thead>
-        <tr>
-          {{#payload}}
+        {{#payload}}
+          <tr>
             <td>{{row_num}}</td>
-            <td><a href="./review_project/{{project_id}},{{person_id}}">{{title}}</a></td>
+            <td><a href="./review_project/{{project_id}},{{person_id}}">{{{title}}}</a></td>
             <td>{{num_reviews}}</td>
-            <td>{{keywords}}</td>
-            <td>{{category}}</td>
-          {{/payload}}
-        </tr>
+            <td>{{{category}}}</td>
+          </tr>
+        {{/payload}}
       </table>
 
     </main>
