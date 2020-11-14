@@ -78,41 +78,27 @@
           <li>Each project submitted is an opportunity to win cash prize.</li>
           <li>One year subscription to IoT-Creator (starting at the conclusion of the Datathon).</li>
         </ul>
+      </form>
 
-        <!-- START PAYPAL CODE -->
-        <!-- Both forms are needed for the PayPal buttons to work. -->
-        <form id="hidden-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick" />
+      <!-- START PAYPAL CODE -->
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="XB48B93KJ5QRQ" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </form>
+      <br>
+      <!-- END PAYPAL CODE -->
 
-          <input type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ" />
+      <hr>
 
-        </form>
-        <form id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-
-          <input form="paypal-form" type="hidden" name="cmd" value="_s-xclick">
-
-          <input form="paypal-form" type="hidden" name="hosted_button_id" value="LXFH2GCQ4UTGJ">
-
-          <img loading="lazy" alt="" border="0" width="1" height="1" data-src="https://www.paypal.com/en_US/i/scr/pixel.gif" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-          <noscript>
-            <img loading="lazy" alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-          </noscript>
-
-          <button form="paypal-form" type="image" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button">
-            Donate via PayPal
-          </button>
-        </form>
-        <!-- END PAYPAL CODE -->
-
-        <hr>
-
+      <form id="final-form" method="post" enctype="multipart/form-data">
         <h2>5. Finalize Registration</h2>
         <label class="longlabel" for="register">
           Clicking the button below will complete the registration process. You
           will receive an confirmation email shortly after.
         </label>
         <br>
-        <button type="submit" form="main-form" id="register" onclick="save();" formaction="/saveRegister" form disabled="true">Register</button>
+        <button type="submit" form="final-form" id="register" onclick="save();" formaction="/saveRegister" form disabled="true">Register</button>
         <br><br>
       </form>
 

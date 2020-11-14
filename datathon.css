@@ -66,6 +66,7 @@ h1 {
   position: relative;
   left: 20px;
   width: 80%;
+  font-size: 50px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
 }
