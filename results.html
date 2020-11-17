@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Results
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Results</h1>
+      <hr>
+    </head>
+
+    <main>
+      <h2>Project Ratings</h2>
+      <table>
+        <thead>
+          <th colspan="2">Project Title</th>
+          <th>Number of <br> Reviews</th>
+          <th>Cat.</th>
+          <th>Crea.</th>
+          <th>Comp.</th>
+          <th>Corr.</th>
+          <th>Read.</th>
+          <th>UI</th>
+          <th>Overall</th>
+
+        </thead>
+        <tr>
+          {{#payload}}
+            <td>{{row_num}}</td>
+            <td>{{title}}</td>
+            <td>{{num_reviews}}</td>
+            <td>{{category}}</td>
+            <td>{{avg_creativity}}</td>
+            <td>{{avg_completeness}}</td>
+            <td>{{avg_correctness}}</td>
+            <td>{{avg_readability}}</td>
+            <td>{{avg_user_interface}}</td>
+            <td>{{overall_score}}</td>
+          {{/payload}}
+        </tr>
+      </table>
+
+    </main>
+  </body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Project Correct
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="../datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="../IotCreatorDatathonLogoWhite.png">
+      <h1>Project Correction</h1>
+      <hr>
+    </head>
+
+    <main>
+      <h2>1. Project's Information</h2>
+      <form enctype="multipart/form-data" onsubmit="save();" method="post" action="../saveCorrect">
+        <label for="title">Title</label>
+        <input size="80" pattern="\s*(\S\s*){3,}" id="title" name="title" value="{{{query.title}}}" required>
+        <br>
+
+        <label for="description">Description</label>
+        <textarea rows="10" cols="78" id="description" name="description">{{{query.description}}}</textarea>
+        <br>
+
+        <label for="category">Category</label>
+        <label class="longlabel" style="width:400px;">{{{query.category}}}</label>
+        <br>
+
+        <label for="keywords">Keywords</label>
+        <input size="80" id="keywords" name="keywords" value="{{query.keywords}}" required>
+        <br>
+
+        <label for="hw_links">Hardware Links</label>
+        <textarea rows="5" cols="78" id="hw_links" name="hw_links" required>{{{query.hw_links}}}</textarea>
+        <br>
+
+        <br>
+        <hr>
+
+        <h2>2. Project's Implementation</h2>
+        <p>
+          To extract the project's implementation
+        </p>
+        <ol>
+          <li>login to your IoT-Creator account</li>
+          <li>select "Export" from the menu in the top-right page corner</li>
+          <li>click the "Copy to clipboard" button</li>
+          <li>paste to the input area below (or to text file first)</li>
+        </ol>
+        <p>
+          Remember: to facilitate reviews, every project must include flows to insert
+          IoT sensor data and to model IoT actuator actions.
+        </p>
+        <label for="code">Iot-Creator Code</label>
+        <br>
+        <textarea id="code" name="code" rows="15" cols="100" required>{{{query.code}}}</textarea>
+        <br>
+
+        <p>
+          An image and/or video can help users understand how your project works,
+          and improve your odds of placing in the competition. Below, you have
+          an opportunity to load an image file and/or video file.
+          At least one of these must be submitted.
+        </p>
+        <label for="image_file" style="width:200px;">
+          Image <small>(less than 1 MB)</small>
+        </label>
+        <input type="file" accept="image/*" id="image_file" name="image_file" required>
+        <br><br>
+
+        <label for="video_file" style="width:200px;">
+          Video <small>(less than 4 MB)</small>
+        </label>
+        <input type="file" accept=".mp4,video/*" id="video_file" name="video_file" required>
+
+        <script>
+          $('#image_file').ready(function() {
+            $('input[type="file"]').change(function() {
+              var imgpath = document.getElementById('image_file');
+              if (!imgpath.value == "") {
+                var img = imgpath.files[0].size;
+                var imgsize = img / (1024 * 1024);
+                var file = imgpath.files[0];
+                if (file && file['type'].split('/')[0] === 'image') {
+                  if (imgsize > 1) {
+                    alert("Image size should be less than 1 MB");
+                    imgpath.value = "";
+                  } else {
+                    // image file successfully added, so video no longer reuqired
+                    var vid_element = document.getElementById('video_file')
+                    vid_element.removeAttribute("required")
+                  }
+                } else {
+                  imgpath.value = "";
+                }
+              }
+            });
+          });
+
+          $('#video_file').ready(function() {
+            $('input[type="file"]').change(function() {
+              var vidpath = document.getElementById('video_file');
+              if (!vidpath.value == "") {
+                var vid = vidpath.files[0].size;
+                var vidsize = vid / (1024 * 1024);
+                var file = vidpath.files[0];
+                if (file && file['type'].split('/')[0] === 'video') {
+                  if (vidsize > 4) {
+                    alert("Video file size should be less than 4 MB");
+                    vidpath.value = "";
+                  } else {
+                    // video file successfully added, so image no longer reuqired
+                    var img_element = document.getElementById('image_file')
+                    img_element.removeAttribute("required")
+                  }
+                } else {
+                  vidpath.value = "";
+                }
+              }
+            });
+          });
+        </script>
+        <br><br>
+
+        <hr>
+
+        <h2>3. Submit Correction</h2>
+        <input type="text" name="project_id" value="{{query.project_id}}" hidden="true">
+        <label class="longlabel" for="submit">
+          Click button below to submit the corrected project.
+        </label>
+        <br>
+        <button type="submit" id="submit" name="submit">Submit</button>
+        <br><br>
+      </form>
+
+      <script type="text/javascript">
+        var formData = {
+          "status": "",
+          "project_id": "",
+          "title": "",
+          "description": "",
+          "category": "",
+          "keywords": "",
+          "code": "",
+          "hw_links": "",
+          "image_file": "",
+          "video_file": ""
+        };
+
+        function save() {
+          formData["status"] = "UPDATED";
+          formData["project_id"] = document.getElementById('project_id').value;
+          formData["title"] = document.getElementById('title').value;
+          formData["description"] = document.getElementById('description').value;
+          formData["category"] = document.getElementById('category').value;
+          formData["keywords"] = document.getElementById('keywords').value;
+          formData["code"] = document.getElementById('code').value;
+          formData["hw_links"] = document.getElementById('hw_links').value;
+          formData["image_file"] = document.getElementById('image_file');
+          formData["video_file"] = document.getElementById('video_file');
+          var data = JSON.stringify(formData);
+          alert("sending data - " + data)
+
+          let xhr = new XMLHttpRequest();
+          let url = "../saveCorrect";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+        }
+      </script>
+
+    </main>
+  </body>
+
+</html>

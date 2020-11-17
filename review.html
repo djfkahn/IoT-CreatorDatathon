@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Project Review
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Review Step 1</h1>
+      <hr>
+    </head>
+
+    <main>
+      <h2>Please Identify</h2>
+      <form method="post" enctype="multipart/form-data" onsubmit="check();" action="./review_list">
+        <label class="longlabel" for="email">
+          Please enter the email address you used to register, so we can generate a list of candidate projects for you to review
+        </label>
+        <br>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <br><br>
+
+        <button type="submit" id="next_button">Next >></button>
+        <br><br>
+      </form>
+
+      <script type="text/javascript">
+        var formData = {
+          "email": ""
+        };
+
+        function check() {
+          formData["email"] = document.getElementById('email').value;
+          var data = JSON.stringify(formData);
+          let xhr = new XMLHttpRequest();
+          let url = "./submit_code";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+
+        }
+      </script>
+
+    </main>
+  </body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Registration
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Register</h1>
+      <hr>
+    </head>
+
+    <main>
+      <form id="main-form" method="post" enctype="multipart/form-data">
+        <h2>Terms and Conditions</h2>
+        <p>
+          By checking the box below, you affirm your are 16 years old or older, and
+          that you have read, understood, and accept the
+          <a target="_blank" href="https://microfacturingusa.org/wp-content/uploads/2020/11/IoT-Creator-Datahon-Terms-and-Conditions-1.pdf">terms and conditions</a>
+          of this event.
+        </p>
+        <fieldset>
+          <label class="longlabel" for="terms" name="terms">
+            <input form="main-form" type="checkbox" id="terms">
+            I am at least 16 years old, and I accept the terms and conditions of the datathon.
+          </label>
+        </fieldset>
+        <br>
+        <hr>
+
+        <h2>Privacy</h2>
+        <p>
+          We collect the minimum information required to communicate with you about
+          Datathon related matters. This information will be stored in the United States
+          and will not be moved without your approval. Our privacy policy can be found
+          <a target="_blank" href="https://microfacturingusa.org/wp-content/uploads/2020/11/IoT-Creator-Datathon-Privacy-Policy.pdf">here</a>.
+        </p>
+        <fieldset>
+          <label class="longlabel" for="privacy" name="privacy">
+            <input form="main-form" type="checkbox" id="privacy" disabled="true">
+            I permit the IoT-Creator Datathon to store my contact information for datathon-related
+            communication.
+          </label>
+        </fieldset>
+        <br>
+        <hr>
+
+        <h2>Donate to Datathon</h2>
+        <p>
+          This Datathon asks for a $25(US) donation submitted via PayPal. Please ensure the email
+          provided above matches the PayPal sender email. This donation entitles the contestant to:
+        </p>
+        <ul>
+          <li>Unlimited project entries.</li>
+          <li>Each project submitted is an opportunity to win cash prize.</li>
+          <li>One year subscription to IoT-Creator (starting at the conclusion of the Datathon).</li>
+        </ul>
+      </form>
+
+      <!-- START PAYPAL CODE -->
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="XB48B93KJ5QRQ" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+      </form>
+      <br>
+      <!-- END PAYPAL CODE -->
+
+
+      <script type="text/javascript">
+        $('#terms').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', false);
+        });
+        $('#privacy').on('click', function() {
+          $('#terms').attr('disabled', true);
+          $('#privacy').attr('disabled', true);
+          $('#donate').attr('disabled', false);
+        });
+      </script>
+    </main>
+  </body>
+
+</html>

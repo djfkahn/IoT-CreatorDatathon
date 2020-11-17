@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Check Projects
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <header>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Check Projects</h1>
+      <hr>
+    </header>
+
+    <main>
+      <h2>Projects to Check</h2>
+      <table>
+        <thead>
+          <th colspan="2">Project Title</th>
+          <th>Status</th>
+        </thead>
+        {{#payload}}
+          <tr>
+            <td>{{project_id}}</td>
+            <td><a href="./check_project/{{project_id}}">{{{title}}}</a></td>
+            <td>{{status}}</td>
+          </tr>
+        {{/payload}}
+      </table>
+
+    </main>
+  </body>
+
+</html>

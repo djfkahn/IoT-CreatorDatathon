@@ -4,29 +4,26 @@ CREATE TABLE Persons (
   first_name        TEXT NOT NULL,
   last_name         TEXT NOT NULL,
   email             TEXT NOT NULL,
-  email_confirmed   ENUM('NO','YES','NA'),
   registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-  paid              ENUM('NO','YES','NA'),
   account_date      DATETIME,
   account_number    INTEGER,
-  role              ENUM('CREATOR','JUDGE','FACILITATOR')
+  role              TEXT NOT NULL
 );
 
 
 CREATE TABLE Projects (
   id                INTEGER PRIMARY KEY,
-  status            ENUM('NEW','ISSUE_IDENTIFIED','READY'),
+  status            TEXT NOT NULL,
   submission_date   DATETIME DEFAULT CURRENT_TIMESTAMP,
   creator_id        INTEGER NOT NULL,
   title             TEXT NOT NULL,
   description       TEXT NOT NULL,
   category          TEXT NOT NULL,
-  keywords          TEXT,
-  cloud_code        TEXT NOT NULL,
-  local_code        TEXT,
+  keywords          TEXT NOT NULL,
+  code              TEXT NOT NULL,
+  hw_links          TEXT NOT NULL,
   image_file        TEXT,
-  video_file        TEXT,
-  num_downloads     INTEGER  DEFAULT 0
+  video_file        TEXT
 );
 
 

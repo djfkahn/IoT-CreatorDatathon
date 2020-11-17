@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+  <header>
+    <title>
+      Registration
+    </title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    <link href="./datathon.css" rel="stylesheet">
+  </header>
+
+
+  <body>
+
+    <head>
+      <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
+      <h1>Register cont'd</h1>
+      <hr>
+    </head>
+
+    <main>
+      <form method="post" enctype="multipart/form-data">
+
+        <h2>Registrant's Information</h2>
+        <label for="first_name">First Name: </label>
+        <input pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
+        <br>
+        <label for="last_name">Last Name: </label>
+        <input pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
+        <br>
+        <label for="email">Enter Email: </label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+        <br>
+        <label for="password">Initial Passowrd: </label>
+        <input type="password" id="password" name="password" placeholder="Enter your initial password" required>
+        <br>
+        <small>
+          Remember this initial password. It will be used to create your IoT-Creator account.
+          You should change it as soon as you receive your IoT-Creator account information.
+        </small>
+        <br>
+        <hr>
+
+        <h2>Finalize Registration</h2>
+        <label class="longlabel" for="register">
+          Clicking the button below will complete the registration process. You
+          will receive an confirmation email shortly after.
+        </label>
+        <br>
+        <button type="submit" id="register" onclick="save();" formaction="/saveRegister">Register</button>
+        <br><br>
+      </form>
+
+      <script type="text/javascript">
+        var formData = {
+          "first_name": "",
+          "last_name": "",
+          "email": "",
+          "password": ""
+        };
+
+        function save() {
+          formData["first_name"] = document.getElementById('first_name').value;
+          formData["last_name"] = document.getElementById('last_name').value;
+          formData["email"] = document.getElementById('email').value;
+          formData["password"] = document.getElementById('password').value;
+          var data = JSON.stringify(formData);
+          let xhr = new XMLHttpRequest();
+          let url = "./saveRegister";
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(data);
+        }
+      </script>
+    </main>
+  </body>
+
+</html>
