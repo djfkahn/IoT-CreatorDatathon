@@ -3,7 +3,7 @@
 
   <header>
     <title>
-      Datathon Registration
+      Registration
     </title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
@@ -15,13 +15,13 @@
 
     <head>
       <img class="head-image" src="./IotCreatorDatathonLogoWhite.png">
-      <h1>Registration</h1>
+      <h1>Register</h1>
       <hr>
     </head>
 
     <main>
       <form id="main-form" method="post" enctype="multipart/form-data">
-        <h2>1. Terms and Conditions</h2>
+        <h2>Terms and Conditions</h2>
         <p>
           By checking the box below, you affirm your are 16 years old or older, and
           that you have read, understood, and accept the
@@ -37,7 +37,7 @@
         <br>
         <hr>
 
-        <h2>2. Privacy</h2>
+        <h2>Privacy</h2>
         <p>
           We collect the minimum information required to communicate with you about
           Datathon related matters. This information will be stored in the United States
@@ -54,22 +54,10 @@
         <br>
         <hr>
 
-        <h2>3. Registrant's Information</h2>
-        <label for="first_name">First Name: </label>
-        <input form="main-form" pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
-        <br>
-        <label for="last_name">Last Name: </label>
-        <input form="main-form" pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
-        <br>
-        <label for="email">Enter Email: </label>
-        <input form="main-form" type="email" id="email" name="email" placeholder="Enter your email address" required>
-        <br>
-        <hr>
-
-        <h2>4. Donate to Datathon</h2>
+        <h2>Donate to Datathon</h2>
         <p>
           As an early registrant, your $25(US) donation to the Datathon is being covered by
-          a sponsor. If you would like to make a donation anyway, it can be submitted via PayPal.
+          a sponsor. If you wish to donate anyway, you can do so using PayPal button below.
           Please ensure the email provided above matches the PayPal sender email.
           This donation entitles the contestant to:
         </p>
@@ -83,7 +71,7 @@
       <!-- START PAYPAL CODE -->
       <form action="https://www.paypal.com/donate" method="post" target="_top">
         <input type="hidden" name="hosted_button_id" value="XB48B93KJ5QRQ" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" disabled="true" id="donate" name="donate" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
         <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
       </form>
       <br>
@@ -91,36 +79,16 @@
 
       <hr>
 
-      <form id="final-form" method="post" enctype="multipart/form-data">
-        <h2>5. Finalize Registration</h2>
-        <label class="longlabel" for="register">
-          Clicking the button below will complete the registration process. You
-          will receive an confirmation email shortly after.
+      <form id="final-form" method="get" enctype="multipart/form-data">
+        <label class="longlabel" for="next">
+          Click the Next button to complete the registration process.
         </label>
         <br>
-        <button type="submit" form="final-form" id="register" onclick="save();" formaction="/saveRegister" form disabled="true">Register</button>
+        <button type="submit" form="final-form" id="next" formaction="./register_success" form disabled="true">Next >> </button>
         <br><br>
       </form>
 
       <script type="text/javascript">
-        var formData = {
-          "first_name": "",
-          "last_name": "",
-          "email": ""
-        };
-
-        function save() {
-          formData["first_name"] = document.getElementById('first_name').value;
-          formData["last_name"] = document.getElementById('last_name').value;
-          formData["email"] = document.getElementById('email').value;
-          var data = JSON.stringify(formData);
-          let xhr = new XMLHttpRequest();
-          let url = "./saveRegister";
-          xhr.open("POST", url, true);
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.send(data);
-        }
-
         $('#terms').on('click', function() {
           $('#terms').attr('disabled', true);
           $('#privacy').attr('disabled', false);
@@ -129,7 +97,7 @@
           $('#terms').attr('disabled', true);
           $('#privacy').attr('disabled', true);
           $('#donate').attr('disabled', false);
-          $('#register').attr('disabled', false);
+          $('#next').attr('disabled', false);
         });
       </script>
     </main>
