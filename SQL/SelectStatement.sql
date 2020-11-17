@@ -65,6 +65,7 @@ WHERE status = 'NEW'
 SELECT
   Projects.id as project_id,
   Projects.title as title,
+  Projects.status as status,
   COUNT(Reviews.id) as num_reviews,
   Projects.category as category,
   AVG(Reviews.creativity) as avg_creativity,
@@ -74,8 +75,14 @@ SELECT
   AVG(Reviews.user_interface) as avg_user_interface
 FROM Projects
 JOIN Reviews ON Projects.id = Reviews.project_id
-GROUP BY project_id
-ORDER BY overall_score DESC;
+GROUP BY project_id;
+
+SELECT COUNT(*)
+FROM Persons
+WHERE role = 'CREATOR';
+
+SELECT COUNT(*)
+FROM Projects;
 
 
 --

@@ -20,11 +20,17 @@
     </head>
 
     <main>
+      <h2>Statistics</h2>
+      <ul>
+        <li>Number of Registrants: {{num_registrants}}</li>
+        <li>Number of Projects: {{num_projects}}</li>
+      </ul>
       <h2>Project Ratings</h2>
       <table>
         <thead>
           <th colspan="2">Project Title</th>
           <th>Number of <br> Reviews</th>
+          <th>Status</th>
           <th>Cat.</th>
           <th>Crea.</th>
           <th>Comp.</th>
@@ -38,6 +44,7 @@
           {{#payload}}
             <td>{{row_num}}</td>
             <td>{{title}}</td>
+            <td>{{status}}</td>
             <td>{{num_reviews}}</td>
             <td>{{category}}</td>
             <td>{{avg_creativity}}</td>
