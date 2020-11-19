@@ -24,16 +24,16 @@
 
         <h2>Registrant's Information</h2>
         <label for="first_name">First Name: </label>
-        <input pattern="\s*(\S\s*){3,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
+        <input pattern="\s*(\S\s*){2,}" id="first_name" name="first_name" placeholder="Enter your first name" required>
         <br>
         <label for="last_name">Last Name: </label>
-        <input pattern="\s*(\S\s*){3,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
+        <input pattern="\s*(\S\s*){2,}" id="last_name" name="last_name" placeholder="Enter your last name" required>
         <br>
         <label for="email">Enter Email: </label>
         <input type="email" id="email" name="email" placeholder="Enter your email address" required>
         <br>
         <label for="password">Initial Passowrd: </label>
-        <input type="password" id="password" name="password" placeholder="Enter your initial password" required>
+        <input pattern="\s*(\S\s*){8,}" type="password" id="password" name="password" placeholder="Enter your initial password" required>
         <br>
         <small>
           Remember this initial password. It will be used to create your IoT-Creator account.
@@ -48,11 +48,12 @@
           will receive an confirmation email shortly after.
         </label>
         <br>
-        <button type="submit" id="register" onclick="save();" formaction="/saveRegister">Register</button>
+        <!-- <button type="submit" id="register" onclick="save();" formaction="/saveRegister">Register</button> -->
+        <button type="submit" id="register" formaction="/saveRegister">Register</button>
         <br><br>
       </form>
 
-      <script type="text/javascript">
+      <!-- <script type="text/javascript">
         var formData = {
           "first_name": "",
           "last_name": "",
@@ -72,7 +73,7 @@
           xhr.setRequestHeader("Content-Type", "application/json");
           xhr.send(data);
         }
-      </script>
+      </script> -->
     </main>
   </body>
 
