@@ -48,32 +48,10 @@
           will receive an confirmation email shortly after.
         </label>
         <br>
-        <!-- <button type="submit" id="register" onclick="save();" formaction="/saveRegister">Register</button> -->
         <button type="submit" id="register" formaction="/saveRegister">Register</button>
         <br><br>
       </form>
 
-      <!-- <script type="text/javascript">
-        var formData = {
-          "first_name": "",
-          "last_name": "",
-          "email": "",
-          "password": ""
-        };
-
-        function save() {
-          formData["first_name"] = document.getElementById('first_name').value;
-          formData["last_name"] = document.getElementById('last_name').value;
-          formData["email"] = document.getElementById('email').value;
-          formData["password"] = document.getElementById('password').value;
-          var data = JSON.stringify(formData);
-          let xhr = new XMLHttpRequest();
-          let url = "./saveRegister";
-          xhr.open("POST", url, true);
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.send(data);
-        }
-      </script> -->
     </main>
   </body>
 
