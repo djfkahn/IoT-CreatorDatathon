@@ -3,7 +3,7 @@
 
   <header>
     <title>
-      Project Submit
+      Submit
     </title>
     <script src="https://code.jquery.com/jquery-1.12.4.min.js">
     </script>
@@ -21,7 +21,7 @@
 
     <main>
       <h2>Please Identify</h2>
-      <form method="post" enctype="multipart/form-data" onsubmit="check();" action="./submit_code">
+      <form method="post" enctype="multipart/form-data" action="./submit_code.html">
         <label class="longlabel" for="email">
           Please enter the email address you used to register:
         </label>
@@ -32,23 +32,6 @@
         <button type="submit" id="next_button">Next >></button>
         <br><br>
       </form>
-
-      <script type="text/javascript">
-        var formData = {
-          "email": ""
-        };
-
-        function check() {
-          formData["email"] = document.getElementById('email').value;
-          var data = JSON.stringify(formData);
-          let xhr = new XMLHttpRequest();
-          let url = "./submit_code";
-          xhr.open("POST", url, true);
-          xhr.setRequestHeader("Content-Type", "application/json");
-          xhr.send(data);
-
-        }
-      </script>
 
     </main>
   </body>
